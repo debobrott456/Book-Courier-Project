@@ -2,6 +2,7 @@ import React from 'react';
 import UseRole from '../Hooks/UseRole';
 import UserDashboard from './UserDashboard';
 import DashBoardLayout from './dashBoardLayout';
+import AdminDashBoard from './AdminDashBoard';
 
 const DashBoard = () => {
     const {role,roleLoading}=UseRole();
@@ -11,7 +12,8 @@ const DashBoard = () => {
 
             }
   if(role.role=='users') return <UserDashboard></UserDashboard>
-  if(role.role=='librarian') return <DashBoardLayout></DashBoardLayout>
+  else if(role.role=='librarian') return <DashBoardLayout></DashBoardLayout>
+  else return <AdminDashBoard></AdminDashBoard>
    
 };
 

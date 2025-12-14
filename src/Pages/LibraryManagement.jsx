@@ -48,7 +48,7 @@ if(isLoading){
     });
         }
 
-           const handleLibrarian = (id) => {
+           const handleLibrarian = (email) => {
             Swal.fire({
               title: "Make the user as librarian?",
               text: `Change user role as Librarian?`,
@@ -58,10 +58,10 @@ if(isLoading){
             }).then(async (result) => {
               if (result.isConfirmed) {
                 try {
-                  const res = await axiosSecure.patch(`/usersrole/${id}`, {
+                  const res = await axiosSecure.patch(`/usersrole/${email}`, {
                     role:"librarian",
                   });
-                  const res1=await axiosSecure.patch(`/librarianrole/${id}`,{
+                  const res1=await axiosSecure.patch(`/librarianrole/${email}`,{
                     role:"librarian"
                   })
                    console.log(res1)
@@ -77,7 +77,7 @@ if(isLoading){
               }
             });
           };
-           const handleRemoveAdmin = (id) => {
+           const handleRemoveAdmin = (email) => {
             Swal.fire({
               title: "Change the permission?",
               text: `Change Librarian to a user?`,
@@ -87,10 +87,10 @@ if(isLoading){
             }).then(async (result) => {
               if (result.isConfirmed) {
                 try {
-                  const res = await axiosSecure.patch(`/usersrole/${id}`, {
+                  const res = await axiosSecure.patch(`/usersrole/${email}`, {
                     role:"users",
                   });
-                  const res1 = await axiosSecure.patch(`/librarianrole/${id}`, {
+                  const res1 = await axiosSecure.patch(`/librarianrole/${email}`, {
                     role:"users",
                   });
                   console.log(res1)
@@ -135,7 +135,7 @@ if(isLoading){
         <td>{user.email}</td>
       <td>{user.role}</td>
         <td className='flex gap-3 ml-4'>
-       <td>{user.role=="users"?<button onClick={()=>handleLibrarian(user._id)}  className='bg-green-500 btn'><FaUserShield /></button>:<button onClick={()=>handleRemoveAdmin(user._id)} className='btn bg-red-400'><FaUserSlash/></button> }</td>
+       <td>{user.role=="users"?<button onClick={()=>handleLibrarian(user.email)}  className='bg-green-500 btn'><FaUserShield /></button>:<button onClick={()=>handleRemoveAdmin(user.email)} className='btn bg-red-400'><FaUserSlash/></button> }</td>
         </td>
         <td><button className='btn bg-red-400' onClick={()=>handleDelete(user._id)}><IoPersonRemoveOutline /></button></td>
       </tr>)

@@ -30,6 +30,7 @@ import AdminRoute from './Routes/AdminRoute.jsx';
 import BeALibrarian from './Pages/BeALibrarian.jsx';
 import LibraryManagement from './Pages/LibraryManagement.jsx';
 import DashBoard from './Pages/DashBoard.jsx';
+import AdminDashBoard from './Pages/AdminDashBoard.jsx';
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
@@ -81,6 +82,22 @@ const router = createBrowserRouter([
     ]
 },
 {
+   path:"/adminDash",
+   element:<AdminDashBoard></AdminDashBoard>,
+
+   children:[
+     {
+      path:'users-management',
+      // loader:()=>fetch(`http://localhost:5000/users`) ,
+      element:<AdminRoute><UsersManagement></UsersManagement></AdminRoute>
+     },
+     {
+      path:'libmanage',
+      // loader:()=>fetch(`http://localhost:5000/users`) ,
+      element:<AdminRoute><LibraryManagement></LibraryManagement></AdminRoute>
+     }
+  ]},
+{
    path:"/userDashboard",
    element:<UserDashboard></UserDashboard>,
 
@@ -110,16 +127,7 @@ const router = createBrowserRouter([
       path:'payment-success',
       Component:PaymentSuccess,
      },
-     {
-      path:'users-management',
-      // loader:()=>fetch(`http://localhost:5000/users`) ,
-      element:<AdminRoute><UsersManagement></UsersManagement></AdminRoute>
-     },
-     {
-      path:'libmanage',
-      // loader:()=>fetch(`http://localhost:5000/users`) ,
-      element:<AdminRoute><LibraryManagement></LibraryManagement></AdminRoute>
-     }
+    
    ]
 },
 {
