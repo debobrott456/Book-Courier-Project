@@ -1,0 +1,38 @@
+[
+  {
+    "name": "The Silent Patient",
+    "author": "Alex Michaelides",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQU6eWV-QYP2uMfRaNKDoof1XnB3pSikm9chg&s",
+    "price": 15.99
+  },
+  {
+    "name": "Atomic Habits",
+    "author": "James Clear",
+    "image": "https://tse4.mm.bing.net/th/id/OIP.yxeJ4ekIJctvMNzkCeTQFQHaFj?rs=1&pid=ImgDetMain&o=7&rm=3",
+    "price": 18.50
+  },
+  {
+    "name": "The Alchemist",
+    "author": "Paulo Coelho",
+    "image": "https://contentblog.abaenglish.com/wp-content/uploads/2014/04/the-alchemist.jpg",
+    "price": 12.99
+  },
+  {
+    "name": "Rich Dad Poor Dad",
+    "author": "Robert T. Kiyosaki",
+    "image": "https://prodimage.images-bn.com/pimages/9781612680057_p0_v2_s1200x630.jpg",
+    "price": 14.00
+  },
+  {
+    "name": "Harry Potter and the Sorcerer's Stone",
+    "author": "J.K. Rowling",
+    "image": "https://res.cloudinary.com/bloomsbury-atlas/image/upload/w_360,c_scale,dpr_1.5/jackets/9781408855713.jpg",
+    "price": 22.95
+  },
+  {
+    "name": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "image": "https://laz-img-sg.alicdn.com/p/913c14b424ee33f550c75a0d9d97bae8.jpg",
+    "price": 16.75
+  }
+]
