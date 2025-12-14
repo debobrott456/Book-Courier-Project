@@ -27,6 +27,9 @@ import Payment from './Dashboard/Payment.jsx';
 import PaymentSuccess from './Dashboard/PaymentSuccess.jsx';
 import UsersManagement from './Pages/UsersManagement.jsx';
 import AdminRoute from './Routes/AdminRoute.jsx';
+import BeALibrarian from './Pages/BeALibrarian.jsx';
+import LibraryManagement from './Pages/LibraryManagement.jsx';
+import DashBoard from './Pages/DashBoard.jsx';
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
@@ -46,6 +49,14 @@ const router = createBrowserRouter([
         path:"/bookDetails/:id",
          loader:({params})=>fetch(`http://localhost:5000/books/${params.id}`) ,
         Component:BookDetails
+      },
+      {
+        path:"/beALibrarian",
+        Component:BeALibrarian
+      },
+      {
+        path:'/dashBoard',
+        Component:DashBoard
       }
      
     ]
@@ -101,8 +112,13 @@ const router = createBrowserRouter([
      },
      {
       path:'users-management',
-      loader:()=>fetch(`http://localhost:5000/users`) ,
+      // loader:()=>fetch(`http://localhost:5000/users`) ,
       element:<AdminRoute><UsersManagement></UsersManagement></AdminRoute>
+     },
+     {
+      path:'libmanage',
+      // loader:()=>fetch(`http://localhost:5000/users`) ,
+      element:<AdminRoute><LibraryManagement></LibraryManagement></AdminRoute>
      }
    ]
 },

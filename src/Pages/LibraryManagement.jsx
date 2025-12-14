@@ -1,42 +1,27 @@
-import React, { use } from 'react';
-
-import UseAxiosSecure from '../Hooks/UseAxiosSecure';
-import Swal from 'sweetalert2';
-import { FaUserShield, FaUserSlash } from 'react-icons/fa';
-import { MdDelete } from 'react-icons/md';
-import { IoPersonRemoveOutline } from 'react-icons/io5';
-import {  ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import UseRole from '../Hooks/UseRole';
 import { useQuery } from '@tanstack/react-query';
-import { AuthContext } from '../Contexts/Context';
+import React from 'react';
+import UseAxiosSecure from '../Hooks/UseAxiosSecure';
+import UseRole from '../Hooks/UseRole';
+import Swal from 'sweetalert2';
+import { IoPersonRemoveOutline } from 'react-icons/io5';
+import { FaUserShield, FaUserSlash } from 'react-icons/fa';
+import { ToastContainer } from 'react-toastify';
 
-const UsersManagement = () => {
-  const {user}=use(AuthContext)
-    const axiosSecure=UseAxiosSecure()
-    // const users=useLoaderData();
+const LibraryManagement = () => {
 
-    
-
-    const {data:users=[],refetch,isLoading}=useQuery({
+const axiosSecure=UseAxiosSecure()
+  const {data:users=[],refetch,isLoading}=useQuery({
       queryKey:['users'],
       queryFn:async ()=>{
-        const res=await axiosSecure.get('/users')
+        const res=await axiosSecure.get('/beLibrarian')
         return res.data
       }
     })
-const role=UseRole()
-
-console.log(role)
-if(!user||isLoading){
-   return (
-      <div className="flex justify-center items-center h-screen">
-        <span className="loading loading-spinner loading-xl"></span>
-      </div>
-    );
+// const role=UseRole()
+if(isLoading){
+    return    <span className="loading loading-spinner loading-xl text-center"></span>
 }
-
-     const handleDelete=(id)=>{
+ const handleDelete=(id)=>{
       console.log(id);
       Swal.fire({
       title: "Are you sure?",
@@ -49,33 +34,39 @@ if(!user||isLoading){
     }).then((result) => {
       if (result.isConfirmed) {
         
-        axiosSecure.delete(`/users/${id}`)
-        .then(res=>console.log(res))
-        Swal.fire({
+        axiosSecure.delete(`/libUser/${id}`)
+        .then(res=>{console.log(res)
+            refetch()
+             Swal.fire({
           title: "Removed!",
           text: "User has been removed.",
           icon: "success"
         });
+        })
+       
       }
     });
         }
 
-           const handleAdmin = (id) => {
+           const handleLibrarian = (id) => {
             Swal.fire({
-              title: "Make user admin?",
-              text: `Change user role as admin?`,
+              title: "Make the user as librarian?",
+              text: `Change user role as Librarian?`,
               icon: "question",
               showCancelButton: true,
-              confirmButtonText: "Yes, make admin",
+              confirmButtonText: "Yes, make Librarian",
             }).then(async (result) => {
               if (result.isConfirmed) {
                 try {
                   const res = await axiosSecure.patch(`/usersrole/${id}`, {
-                    role:"admin",
+                    role:"librarian",
                   });
-        
+                  const res1=await axiosSecure.patch(`/librarianrole/${id}`,{
+                    role:"librarian"
+                  })
+                   console.log(res1)
                   console.log(res.data);
-                  Swal.fire("Updated!", "User set to be as admin.", "success");
+                  Swal.fire("Updated!", "User set to be as Librarian.", "success");
                   refetch();
                   // Refresh page
                   // window.location.reload();
@@ -89,7 +80,7 @@ if(!user||isLoading){
            const handleRemoveAdmin = (id) => {
             Swal.fire({
               title: "Change the permission?",
-              text: `Change admin to a user?`,
+              text: `Change Librarian to a user?`,
               icon: "question",
               showCancelButton: true,
               confirmButtonText: "Yes, make it user",
@@ -99,9 +90,12 @@ if(!user||isLoading){
                   const res = await axiosSecure.patch(`/usersrole/${id}`, {
                     role:"users",
                   });
-        
+                  const res1 = await axiosSecure.patch(`/librarianrole/${id}`, {
+                    role:"users",
+                  });
+                  console.log(res1)
                   console.log(res.data);
-                  Swal.fire("Updated!", "Admission permission off.", "success");
+                  Swal.fire("Updated!", "Librarian permission off.", "success");
                   refetch()
                   // Refresh page
                   // window.location.reload();
@@ -113,26 +107,10 @@ if(!user||isLoading){
             });
           };
 
-
-//         const handleRemoveAdmin = async (id) => {
-//     try {
-//         const res = await axiosSecure.patch(`/usersrole/${id}`, {
-//             role: "users"
-//         });
-
-//         if (res.data.modifiedCount > 0) {
-//         toast.success("admin permission off!")
-//             window.location.reload(); 
-//             // or you can update state instead of reload
-//         }
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
-       return (
+     return (
         <div>
              <div>
-            <p>All my users{users.length}</p>
+            <p className='text-3xl font-bold text-center text-orange-500 m-5'>All Librarian Request :{users.length}</p>
 
             <div className="overflow-x-auto">
   <table className="table table-zebra">
@@ -143,7 +121,7 @@ if(!user||isLoading){
         <th> Name</th>
         <th> Email</th>
         <th>role</th>
-        <th>Admin Action</th>
+        <th>Librarian Action</th>
         <th>Others Action</th>
       </tr>
     </thead>
@@ -153,11 +131,11 @@ if(!user||isLoading){
       {
         users.map((user,index)=> <tr key={user._id}>
         <th>{index+1}</th>
-        <td>{user.displayName}</td>
+        <td>{user.name}</td>
         <td>{user.email}</td>
       <td>{user.role}</td>
         <td className='flex gap-3 ml-4'>
-       <td>{user.role=="users"?<button onClick={()=>handleAdmin(user._id)}  className='bg-green-500 btn'><FaUserShield /></button>:<button onClick={()=>handleRemoveAdmin(user._id)} className='btn bg-red-400'><FaUserSlash/></button> }</td>
+       <td>{user.role=="users"?<button onClick={()=>handleLibrarian(user._id)}  className='bg-green-500 btn'><FaUserShield /></button>:<button onClick={()=>handleRemoveAdmin(user._id)} className='btn bg-red-400'><FaUserSlash/></button> }</td>
         </td>
         <td><button className='btn bg-red-400' onClick={()=>handleDelete(user._id)}><IoPersonRemoveOutline /></button></td>
       </tr>)
@@ -174,4 +152,4 @@ if(!user||isLoading){
     );
 };
 
-export default UsersManagement;
+export default LibraryManagement;

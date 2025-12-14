@@ -11,7 +11,9 @@ import Logo from './Logo';
 
 const Navbar = () => {
 const {user,signOutUser}=use(AuthContext);
-console.log(user)
+console.log("Navbar user:", user);
+console.log("photoURL:", user?.photoURL);
+
  
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") || "light"
@@ -76,6 +78,32 @@ signOutUser()
       >
         Add Books
       </NavLink></li>
+
+      {user && <>
+       <li><NavLink
+        to="/beALibrarian"
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-orange-600"
+            : "text-gray-600 hover:text-blue-500"
+        }
+      >
+        Be A Librarian
+      </NavLink></li>
+      </>}
+      {user && <>
+       <li><NavLink
+        to="/dashBoard"
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-orange-600"
+            : "text-gray-600 hover:text-blue-500"
+        }
+      >
+        DashBoard
+      </NavLink></li>
+      </>}
+   
 
     {user && <><li><NavLink
         to="/invoices"
