@@ -90,7 +90,8 @@ const Home = () => {
     <section>
         <div className='grid grid-cols-3 gap-10'>
             {
-                books.map((book)=><div className='flex gap-3 shadow-2xl rounded-xl '>
+                books.map((book)=>
+                <div className='flex gap-3 shadow-2xl rounded-xl '>
                 <img src={book.bookImage} alt="" style={{width:150, heigth:150}}/>
                 <div className='p-3'>
                     <p>Book name :{book.bookName}</p>

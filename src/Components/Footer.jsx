@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mail, MapPin, Phone } from "lucide-react";
+import { Link } from 'react-router';
 const Footer = () => {
     return (
    <footer className="w-full bg-violet-200  mt-1">
@@ -8,15 +9,30 @@ const Footer = () => {
 
 It connects readers with nearby couriers, ensuring quick delivery and real-time tracking. <br />
 </p></div>
-  <div><h3>Company</h3>
-  <p>About Us</p>
-  <p>Our Mission</p>
-  </div>
-  <div><h3>Services</h3>
-  <p>Product and services</p>
-  <p>Customer stories</p>
-  </div>
   
+
+
+        {/* Services / Products */}
+        <div>
+          <h4 className="font-bold mb-2">Services / Products</h4>
+          <ul className='text-blue-400 '>
+            <li><Link to="/services">Our Services</Link></li>
+            <li><Link to="/products">Products</Link></li>
+            <li><Link to="/pricing">Pricing</Link></li>
+          </ul>
+        </div>
+
+        {/* FAQ / Support / Privacy */}
+        <div>
+          <h4 className="font-bold mb-2">FAQ / Policies</h4>
+          <ul className='text-blue-400'>
+            <li><Link to="/faq">FAQ / Support</Link></li>
+            <li><Link to="/privacy">Privacy Policy</Link></li>
+            <li><Link to="/terms">Terms & Conditions</Link></li>
+          </ul>
+        </div>
+
+    
   
 
  {/* Contact */}

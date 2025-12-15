@@ -3,18 +3,73 @@ import { Link, useLoaderData } from 'react-router';
 import { AuthContext } from '../Contexts/Context';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
 import { toast, ToastContainer } from 'react-toastify';
-
+import { AiOutlineLike } from "react-icons/ai";
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 
 
 const BookDetails = () => {
     const books=useLoaderData()
+    
+
+  const handleLike = async (bookId, currentLikes) => {
+  try {
+    const updatedLikes = currentLikes + 1;
+
+    const response = await axiosSecure.patch(`/booksLike/${bookId}`, {
+      likes: updatedLikes,
+    });
+
+    if (response.data.modifiedCount > 0) {
+      window.location.reload()
+      // update UI immediately
+    }
+  } catch (error) {
+    console.error("Error updating like:", error);
+  }
+};
       const book = books[0]; 
   const { user } = use(AuthContext);
   console.log(user)
   const axiosSecure = UseAxiosSecure();
 
   const [isOpen, setIsOpen] = useState(false);
+
+
+
+const addToWishlist = async (book) => {
+  try {
+    // Prepare the payload
+    const data = {
+      bookId: book._id,
+      bookName: book.bookName,
+      authorName: book.authorName,
+      bookPrice: book.bookPrice,
+      bookImage: book.bookImage,
+      sellerEmail: book.sellerEmail,
+      userEmail:user.email,
+      likes: book.likes || 0, // optional
+      
+    };
+
+    // Send POST request
+    const response = await axiosSecure.post("/wishBooks", data);
+
+    if (response.data.insertedId) {
+      Swal.fire({
+                 title: "Books Added to WishList!",
+                 text: "Your Book has been added to WishList.",
+                 icon: "success"
+               });
+    } else {
+     console.log("Book already in wishlist or could not be added.");
+    }
+  } catch (error) {
+    console.error("Error adding to wishlist:", error);
+    
+  }
+};
+
 
     const handleOrder = async (e) => {
     e.preventDefault();
@@ -55,18 +110,31 @@ const BookDetails = () => {
     // close modal
     setIsOpen(false);
   };
-    console.log(books)
+    console.log(books[0].bookImage)
     return (
         <div>
             <div className='flex gap-3 shadow-2xl rounded-xl m-10 max-h-[800px] max-w-[500px]'>
-              <div >  <img src={books[0].bookImage} alt="" className="w-[380px] h-[450px]"/></div>
+            <div > 
+                 <img src={books[0].bookImage} alt="" className="w-[350px] h-[450px] object-cover"/>
+                 </div>
                 <div className='p-3 flex flex-col gap-5'>
                     <p className='text-2xl font-semibold'>Book Name:{books[0].bookName}</p>
                     <p>Book Author :{books[0].authorName}</p>
+                    <p>Seller Email :{books[0].sellerEmail}</p>
                     <p className='text-amber-500'>Book Price :{books[0].bookPrice}</p>
  <button className='btn btn-warning' onClick={() => setIsOpen(true)}>
             Order Now
-          </button>                  
+          </button>   
+           <div className="flex items-center gap-2 mt-2">
+            <button
+            onClick={() => handleLike(books[0]._id, books[0].likes)}           
+            className="btn btn-sm btn-outline btn-primary"
+            >
+              Like <AiOutlineLike/>
+            </button>
+            <span>{books[0].likes}</span>
+            <button onClick={()=>addToWishlist(book)}>Add to WishList</button>
+          </div>                
                 </div>
                 </div>
 

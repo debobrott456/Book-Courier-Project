@@ -11,8 +11,9 @@ const AddBooks = () => {
     const {user}=use(AuthContext)
     
     const handleForm=(data)=>{
-        const price=parseInt(data.price)
-        data.price=price
+  const price = Number(data.bookPrice);
+          data.bookPrice=price
+          data.likes=0
      console.log(data)
      data.created_At=new Date
     axiosSecure.post('/books',data)
@@ -54,7 +55,7 @@ const AddBooks = () => {
               </div>
 <div>
                  <label> Book Price</label> <br />
-                <input type="text" placeholder="Enter Price"  {...register('bookPrice')} className="input w-full"  /> <br />
+                <input type="number" placeholder="Enter Price"  {...register('bookPrice')} className="input w-full"  /> <br />
                  <label> Seller Email</label> <br />
                 <input type="email" placeholder="Enter email" defaultValue={user.email} {...register('sellerEmail')} className="input w-full"  /> <br />
 

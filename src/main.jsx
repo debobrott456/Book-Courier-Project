@@ -31,12 +31,16 @@ import BeALibrarian from './Pages/BeALibrarian.jsx';
 import LibraryManagement from './Pages/LibraryManagement.jsx';
 import DashBoard from './Pages/DashBoard.jsx';
 import AdminDashBoard from './Pages/AdminDashBoard.jsx';
+import AllBooks from './Pages/AllBooks.jsx';
+import ErrorPage from './Pages/ErrorPage.jsx';
+import MyWishList from './Pages/MyWishList.jsx';
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
     path: "/",
     Component:Root,
+     errorElement:<ErrorPage></ErrorPage>,
     children:[
       {
         index:true,
@@ -58,6 +62,10 @@ const router = createBrowserRouter([
       {
         path:'/dashBoard',
         Component:DashBoard
+      },
+      {
+        path:'/allBooks',
+        Component:AllBooks
       }
      
     ]
@@ -126,6 +134,11 @@ const router = createBrowserRouter([
      {
       path:'payment-success',
       Component:PaymentSuccess,
+     },
+     {
+      path:'myWishList',
+      
+      Component:MyWishList,
      },
     
    ]

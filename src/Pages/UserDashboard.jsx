@@ -70,16 +70,14 @@ const UserDashboard = () => {
             <CreditCard />
             <span className='text-red-400'>Invoices</span>
           </button></Link>
-        </li>
-       {role.role==="admin" && <>
-        <li>
-          <Link to={'/userDashboard/users-management'}>
+          <Link to={'/userDashboard/myWishList'}>
           <button className='flex gap-3'>
             {/* <FaShoppingCart className="size-4" /> */}
             <CreditCard />
-            <span>Users Manage</span>
+            <span className='text-red-400'>My WishList</span>
           </button></Link>
-        </li></>}
+        </li>
+     
 
       </ul>
     </div>
