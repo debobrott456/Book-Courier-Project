@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { use } from 'react';
 import { MdDelete } from 'react-icons/md';
-import { Link, useLoaderData } from 'react-router';
+import { Link } from 'react-router';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
+import { AuthContext } from '../Contexts/Context';
 
 const MyOrders = () => {
-    const books=useLoaderData()
-    console.log(books)
+    // const books=useLoaderData()
+    // console.log(books)
+    const {user}=use(AuthContext)
      const axiosSecure = UseAxiosSecure(); // if you use axiosSecure
+ const {data:books=[]}=useQuery({
+        queryKey:['books',user?.email],
+        queryFn:async ()=>{
+            const res=await axiosSecure.get(`/orders?email=${user.email}`);
+            console.log(res.data)
+            return res.data;
+        }
+    })
 
 const handleCancel = async (id) => {
     try {

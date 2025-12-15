@@ -14,7 +14,7 @@ const AllBooks = () => {
  
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allBooks?sort=${sortOrder}`)
+    fetch(`http://localhost:5000/allBooks?sort=${sortOrder}&status=published`)
       .then(res => res.json())
       .then(data => {
       
