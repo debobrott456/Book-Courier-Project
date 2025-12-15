@@ -1,10 +1,11 @@
 import { CreditCard } from 'lucide-react';
 import React from 'react';
 import { CiDeliveryTruck } from 'react-icons/ci';
-import {  FaClipboardList,  FaUsers } from 'react-icons/fa';
+import {  FaBook, FaClipboardList,  FaUser,  FaUsers } from 'react-icons/fa';
 import { IoBookOutline } from 'react-icons/io5';
 import { Link, Outlet } from 'react-router';
 import UseRole from '../Hooks/UseRole';
+import { MdOutlineLocalLibrary } from 'react-icons/md';
 
 const AdminDashBoard = () => {
     
@@ -68,7 +69,7 @@ const {role}=UseRole();
           <Link to={'/adminDash/users-management'}>
           <button className='flex gap-3'>
             {/* <FaShoppingCart className="size-4" /> */}
-            <CreditCard />
+            <FaUsers />
             <span>Users Manage</span>
           </button></Link>
         </li>
@@ -76,8 +77,24 @@ const {role}=UseRole();
           <Link to={'/adminDash/libmanage'}>
           <button className='flex gap-3'>
             {/* <FaShoppingCart className="size-4" /> */}
-            <CreditCard />
+          <MdOutlineLocalLibrary />
             <span>Librarian Manage</span>
+          </button></Link>
+        </li>
+        <li>
+          <Link to={'/adminDash/booksmanage'}>
+          <button className='flex gap-3'>
+            {/* <FaShoppingCart className="size-4" /> */}
+            <FaBook />
+            <span>Books Manage</span>
+          </button></Link>
+        </li>
+        <li>
+          <Link to={'/adminDash/myProfile'}>
+          <button className='flex gap-3'>
+            {/* <FaShoppingCart className="size-4" /> */}
+            <FaUser />
+            <span>My Profile</span>
           </button></Link>
         </li>
         </>}

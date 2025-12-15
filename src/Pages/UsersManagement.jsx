@@ -157,7 +157,7 @@ if(!user||isLoading){
         <td>{user.email}</td>
       <td>{user.role}</td>
         <td className='flex gap-3 ml-4'>
-       <td>{user.role=="users"?<button onClick={()=>handleAdmin(user._id)}  className='bg-green-500 btn'><FaUserShield /></button>:<button onClick={()=>handleRemoveAdmin(user._id)} className='btn bg-red-400'><FaUserSlash/></button> }</td>
+       <td>{user.role=="users"?<button onClick={()=>handleAdmin(user.email)}  className='bg-green-500 btn'><FaUserShield /></button>:<button onClick={()=>handleRemoveAdmin(user.email)} className='btn bg-red-400'><FaUserSlash/></button> }</td>
         </td>
         <td><button className='btn bg-red-400' onClick={()=>handleDelete(user._id)}><IoPersonRemoveOutline /></button></td>
       </tr>)

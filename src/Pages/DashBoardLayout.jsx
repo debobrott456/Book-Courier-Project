@@ -1,6 +1,6 @@
 import React from 'react';
 import { CiDeliveryTruck } from 'react-icons/ci';
-import { FaBook, FaClipboardList, FaCreditCard, FaShoppingCart, FaTruck, FaUsers } from 'react-icons/fa';
+import { FaBook, FaClipboardList, FaCreditCard, FaShoppingCart, FaTruck, FaUser, FaUsers } from 'react-icons/fa';
 import { IoBookOutline } from 'react-icons/io5';
 import { Link, Outlet } from 'react-router';
 
@@ -117,6 +117,13 @@ const DashBoardLayout = () => {
           <button>
             <FaShoppingCart className="size-4" />
             <span>Orders</span>
+          </button></Link>
+        </li>
+        <li>
+          <Link to={'/dashboard/myProfile'}>
+          <button>
+            <FaUser className="size-4" />
+            <span>My Profile</span>
           </button></Link>
         </li>
 

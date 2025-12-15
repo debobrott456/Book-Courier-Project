@@ -34,6 +34,7 @@ import AdminDashBoard from './Pages/AdminDashBoard.jsx';
 import AllBooks from './Pages/AllBooks.jsx';
 import ErrorPage from './Pages/ErrorPage.jsx';
 import MyWishList from './Pages/MyWishList.jsx';
+import ManageBooks from './Pages/ManageBooks.jsx';
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
@@ -103,6 +104,15 @@ const router = createBrowserRouter([
       path:'libmanage',
       // loader:()=>fetch(`http://localhost:5000/users`) ,
       element:<AdminRoute><LibraryManagement></LibraryManagement></AdminRoute>
+     },
+     {
+      path:'booksmanage',
+      // loader:()=>fetch(`http://localhost:5000/users`) ,
+      element:<AdminRoute><ManageBooks></ManageBooks></AdminRoute>
+     },
+     {
+      path:'myProfile',
+      element:<AdminRoute><MyProfile></MyProfile></AdminRoute>
      }
   ]},
 {
@@ -137,7 +147,7 @@ const router = createBrowserRouter([
      },
      {
       path:'myWishList',
-      
+
       Component:MyWishList,
      },
     
@@ -167,6 +177,10 @@ const router = createBrowserRouter([
      {
       path:"update/:id",
       Component:Update
+     },
+     {
+      path:"myProfile",
+      Component:MyProfile
      }
     
   ]
