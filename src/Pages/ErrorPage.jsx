@@ -1,5 +1,4 @@
 
-import React from 'react';
 import error from '../assets/error-404.png'
 import { Link } from 'react-router';
 
