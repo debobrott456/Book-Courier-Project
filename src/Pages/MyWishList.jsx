@@ -8,7 +8,6 @@ const MyWishList = () => {
     const {user}=use(AuthContext)
 
     console.log(user)
-    // console.log(books)
 
      const {data:books=[]}=useQuery({
         queryKey:['books',user?.email],
