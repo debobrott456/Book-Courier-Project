@@ -23,7 +23,7 @@ const AllBooks = () => {
       });
   }, [sortOrder]);
 
-  // Search filter
+
   const term = search.trim().toLowerCase();
   const filtered = term
     ? jobs.filter(app => app.bookName.toLowerCase().includes(term))
