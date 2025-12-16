@@ -21,7 +21,7 @@ console.log("photoURL:", user?.photoURL);
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-
+{/*hamle dog*/ }
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
