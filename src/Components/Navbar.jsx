@@ -6,7 +6,6 @@ import Logo from './Logo';
 // core version + navigation, pagination modules:
 
 
-// init Swiper:
 
 
 const Navbar = () => {
