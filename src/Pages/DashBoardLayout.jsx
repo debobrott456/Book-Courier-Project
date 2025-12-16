@@ -14,7 +14,7 @@ const DashBoardLayout = () => {
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       
           <div className="drawer-content flex flex-col lg:pl-64">
-            {/* Navbar */}
+          
             <nav className="navbar bg-base-300 sticky top-0 z-30">
               <label
                 htmlFor="my-drawer-4"
