@@ -49,7 +49,7 @@ const AllBooks = () => {
   <div className='border border-gray-300 rounded-xl w-[200px] h-7'>  <input value={search} onChange={e=>setSearch(e.target.value)} type="search"
    name="search" id="" placeholder='search by title'/></div>
  </div>
-<div className='grid grid-cols-3 gap-10 mx-8 my-16'>
+<div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-10 mx-8 my-16'>
   {
    filtered.map((book)=>
                 <div className='flex gap-3 shadow-2xl rounded-xl '>

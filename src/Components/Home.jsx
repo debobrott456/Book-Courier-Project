@@ -88,7 +88,7 @@ const Home = () => {
     </section>
 
     <section>
-        <div className='grid grid-cols-3 gap-10'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 m-5'>
             {
                 books.map((book)=>
                 <div className='flex gap-3 shadow-2xl rounded-xl '>

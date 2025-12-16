@@ -5,7 +5,7 @@ const Logo = () => {
         <div className='flex ml-5 items-center'>
             <img src={logo} alt="" style={{width:50}}/>
                
-                <a className="btn btn-ghost text-xl">Book Courier</a>
+            <span className='btn btn-ghost text-xl '> Book Courier</span>
         </div>
     );
 };

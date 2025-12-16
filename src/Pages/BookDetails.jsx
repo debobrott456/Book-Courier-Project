@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { AiOutlineLike } from "react-icons/ai";
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
+import { MdBookmarkAdded } from 'react-icons/md';
 
 
 const BookDetails = () => {
@@ -125,7 +126,7 @@ const addToWishlist = async (book) => {
  <button className='btn btn-warning' onClick={() => setIsOpen(true)}>
             Order Now
           </button>   
-           <div className="flex items-center gap-2 mt-2">
+           <div className="flex items-center gap-6 mt-2">
             <button
             onClick={() => handleLike(books[0]._id, books[0].likes)}           
             className="btn btn-sm btn-outline btn-primary"
@@ -133,7 +134,7 @@ const addToWishlist = async (book) => {
               Like <AiOutlineLike/>
             </button>
             <span>{books[0].likes}</span>
-            <button onClick={()=>addToWishlist(book)}>Add to WishList</button>
+            <button className='btn' onClick={()=>addToWishlist(book)}><span>Add to <br></br> WishList</span> <MdBookmarkAdded /></button>
           </div>                
                 </div>
                 </div>

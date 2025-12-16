@@ -16,95 +16,105 @@ const {role}=UseRole();
   
    
    return (
-        <div className='w-full'>
-           <div className="drawer lg:drawer-open">
-  {/* We keep the checkbox only because DaisyUI requires it, but it stays permanently checked by default */}
-  <input id="my-drawer-4" type="checkbox" className="drawer-toggle" checked readOnly />
+   <div>
+ 
+  <div className="drawer lg:drawer-open">
+    <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
 
-  <div className="drawer-content flex flex-col">
-    {/* Navbar */}
-    <nav className="navbar w-full bg-base-300">
-      <div className="px-4">Navbar Title</div>
-    </nav>
+    {/* Main Content */}
+    <div className="drawer-content flex flex-col lg:pl-64">
+      {/* Navbar */}
+      <nav className="navbar bg-base-300 sticky top-0 z-30">
+        <label
+          htmlFor="my-drawer-4"
+          className="btn btn-square btn-ghost lg:hidden"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </label>
 
-    {/* Page content */}
-   <div className="p-10 bg-gray-100 ">
-      <h1 className="text-3xl font-bold mb-8">Librarian Dashboard</h1>
+   <h1 className="text-3xl font-bold text-orange-400 mx-auto">
+          Admin Dashboard
+        </h1>
+      </nav>
 
+      {/* Page Content */}
+      <div className="p-10 bg-gray-100 min-h-screen">
+       
+        <Outlet />
+      </div>
     </div>
 
-    <Outlet />
-  </div>
+    {/* Sidebar */}
+    <div className="drawer-side z-40">
+      <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
 
-  {/* Permanent Sidebar */}
-  <div className="drawer-side">
-    <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+      <aside className="bg-base-200 w-64 lg:w-64 lg:fixed lg:h-full">
+        <ul className="menu p-4 gap-1">
 
-    <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
-      {/* Sidebar content here */}
-      <ul className="menu w-full grow">
-        {/* List item */}
-        <li>
-          <Link to={'/'}><button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Homepage">
-            {/* Home icon */}
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-            <span className="is-drawer-close:hidden">Homepage</span>
-          </button></Link>
-        </li>
+          {/* Home */}
+          <li>
+            <Link to="/" className="flex items-center gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                  d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2z" />
+              </svg>
+              <span className="">Homepage</span>
+            </Link>
+          </li>
 
-        {/* List item */}
-        <li>
-          <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Settings">
-            {/* Settings icon */}
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor" className="my-1.5 inline-block size-4"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg>
-            <span className="is-drawer-close:hidden">Settings</span>
-          </button>
-        </li>
-      
-        {/* My parcel */}
-       
-       
-         {role.role==="admin" && <>
-        <li>
-          <Link to={'/adminDash/users-management'}>
-          <button className='flex gap-3'>
-            {/* <FaShoppingCart className="size-4" /> */}
-            <FaUsers />
-            <span>Users Manage</span>
-          </button></Link>
-        </li>
-        <li>
-          <Link to={'/adminDash/libmanage'}>
-          <button className='flex gap-3'>
-            {/* <FaShoppingCart className="size-4" /> */}
-          <MdOutlineLocalLibrary />
-            <span>Librarian Manage</span>
-          </button></Link>
-        </li>
-        <li>
-          <Link to={'/adminDash/booksmanage'}>
-          <button className='flex gap-3'>
-            {/* <FaShoppingCart className="size-4" /> */}
-            <FaBook />
-            <span>Books Manage</span>
-          </button></Link>
-        </li>
-        <li>
-          <Link to={'/adminDash/myProfile'}>
-          <button className='flex gap-3'>
-            {/* <FaShoppingCart className="size-4" /> */}
-            <FaUser />
-            <span>My Profile</span>
-          </button></Link>
-        </li>
-        </>}
+          {/* Admin Links */}
+          {role.role === "admin" && (
+            <>
+              <li>
+                <Link to="/adminDash/users-management" className="flex items-center gap-3">
+                  <FaUsers />
+                  <span className="">Users Manage</span>
+                </Link>
+              </li>
 
-      </ul>
+              <li>
+                <Link to="/adminDash/libmanage" className="flex items-center gap-3">
+                  <MdOutlineLocalLibrary />
+                  <span className="">Librarian Manage</span>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/adminDash/booksmanage" className="flex items-center gap-3">
+                  <FaBook />
+                  <span className="">Books Manage</span>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/adminDash/myProfile" className="flex items-center gap-3">
+                  <FaUser />
+                  <span className="">My Profile</span>
+                </Link>
+              </li>
+            </>
+          )}
+        </ul>
+      </aside>
     </div>
   </div>
-</div>
-
-        </div>
+   </div>
+       
     );
 };
 

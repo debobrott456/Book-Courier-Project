@@ -4,26 +4,27 @@ import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import { MdDelete, MdOutlineCancel } from 'react-icons/md';
 import { AuthContext } from '../Contexts/Context';
-import { useState } from "react";
+import { useQuery } from '@tanstack/react-query';
 
 
 
 const Orders = () => {
-    const [orders, setOrders] = useState([]);
     const axiosSecure=UseAxiosSecure()
     
 const {user}=use(AuthContext)
 const email=user.email
+
+    const {data:orders=[],refetch}=useQuery({
+        queryKey:['books'],
+        queryFn:async ()=>{
+            const res=await axiosSecure.get(`/librarian/${email}`);
+            console.log(res.data)
+            return res.data;
+        }
+    })
  // variable to store response
 
-axiosSecure.get(`/librarian/${email}`)
-  .then(res => {
-    setOrders (res.data); // assign data to variable
-    console.log("Librarian data:", orders);
-  })
-  .catch(err => {
-    console.error("Error fetching librarian data:", err);
-  });
+
     console.log(orders)
     
    const handleStatusChange = (id, newStatus) => {
@@ -39,12 +40,12 @@ axiosSecure.get(`/librarian/${email}`)
           const res = await axiosSecure.patch(`/librarian/${id}`, {
             lstatus: newStatus,
           });
-
+           refetch()
           console.log(res.data);
           Swal.fire("Updated!", "Order status updated.", "success");
 
           // Refresh page
-          window.location.reload();
+            // setTimeout(() => {window.location.reload();},1800);
         } catch (err) {
           console.error(err);
           Swal.fire("Error!", "Failed to update status", "error");
@@ -68,14 +69,14 @@ axiosSecure.get(`/librarian/${email}`)
     
         axiosSecure.delete(`/librarian/${id}`)
         .then(res=>{console.log(res)
-            
+            refetch()
         })
         Swal.fire({
           title: "Cancelled!",
           text: "Order has been cancelled.",
           icon: "success"
         });
-         window.location.reload();
+        
       }
     });
         }

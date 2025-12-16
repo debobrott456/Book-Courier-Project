@@ -50,7 +50,9 @@ if(!user||isLoading){
       if (result.isConfirmed) {
         
         axiosSecure.delete(`/users/${id}`)
-        .then(res=>console.log(res))
+        .then(res=>{console.log(res)
+         refetch()}
+      )
         Swal.fire({
           title: "Removed!",
           text: "User has been removed.",
@@ -132,14 +134,14 @@ if(!user||isLoading){
        return (
         <div>
              <div>
-            <p>All my users{users.length}</p>
+            <p className='text-2xl text-orange-400 font-semibold m-5'>All my users{users.length}</p>
 
             <div className="overflow-x-auto">
   <table className="table table-zebra">
     {/* head */}
     <thead>
       <tr>
-        <th></th>
+        <th>No</th>
         <th> Name</th>
         <th> Email</th>
         <th>role</th>

@@ -46,8 +46,9 @@ const handleCancel = async (id) => {
     {/* head */}
     <thead>
       <tr>
-        <th></th>
+        <th>No</th>
         <th>Book Name</th>
+        <th>Book Image</th>
         <th>Price</th>
         <th>Status</th>
         <th>Action</th>
@@ -60,6 +61,7 @@ const handleCancel = async (id) => {
         books.map((book,index)=> <tr key={book._id}>
         <th>{index+1}</th>
         <td>{book.bookName}</td>
+        <td><img className='w-8 h-8' src={book.bookImage} /></td>
        <td>{book.bookPrice}</td>
         <td className={book.status === "paid" ? "text-green-500" : ""}>{book.status}</td>
       
