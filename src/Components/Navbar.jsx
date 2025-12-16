@@ -3,9 +3,6 @@ import { Link, Links, NavLink } from 'react-router';
 import { AuthContext } from '../Contexts/Context';
 import { MdLightMode, MdNightlight } from 'react-icons/md';
 import Logo from './Logo';
-// core version + navigation, pagination modules:
-
-
 
 
 const Navbar = () => {
