@@ -8,7 +8,6 @@ import { RouterProvider } from "react-router/dom";
 import Root from './Root.jsx';
 import Home from './Components/Home.jsx';
 import AddBooks from './Pages/AddBooks.jsx';
-import PrivateRoutes from './Routes/PrivateRoutes.jsx';
 import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
 import AuthProvider from './Contexts/Authprovider.jsx';
