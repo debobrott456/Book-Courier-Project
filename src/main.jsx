@@ -52,7 +52,7 @@ const router = createBrowserRouter([
       
       {
         path:"/bookDetails/:id",
-         loader:({params})=>fetch(`http://localhost:5000/books/${params.id}`) ,
+         loader:({params})=>fetch(`https://book-server-omega.vercel.app/books/${params.id}`) ,
         Component:BookDetails
       },
       {
@@ -96,17 +96,17 @@ const router = createBrowserRouter([
    children:[
      {
       path:'users-management',
-      // loader:()=>fetch(`http://localhost:5000/users`) ,
+      // loader:()=>fetch(`https://book-server-omega.vercel.app/users`) ,
       element:<AdminRoute><UsersManagement></UsersManagement></AdminRoute>
      },
      {
       path:'libmanage',
-      // loader:()=>fetch(`http://localhost:5000/users`) ,
+      // loader:()=>fetch(`https://book-server-omega.vercel.app/users`) ,
       element:<AdminRoute><LibraryManagement></LibraryManagement></AdminRoute>
      },
      {
       path:'booksmanage',
-      // loader:()=>fetch(`http://localhost:5000/users`) ,
+      // loader:()=>fetch(`https://book-server-omega.vercel.app/users`) ,
       element:<AdminRoute><ManageBooks></ManageBooks></AdminRoute>
      },
      {
@@ -121,7 +121,6 @@ const router = createBrowserRouter([
    children:[
      {
       path : "myOrders",
-     loader:()=>fetch('http://localhost:5000/orders') ,
       Component:MyOrders
     },
      {
@@ -138,7 +137,7 @@ const router = createBrowserRouter([
       {
       path:"payment/:id",
       Component:Payment,
-      loader:({params})=>fetch(`http://localhost:5000/orders/${params.id}`)   
+      loader:({params})=>fetch(`https://book-server-omega.vercel.app/orders/${params.id}`)   
      },
      {
       path:'payment-success',
@@ -165,12 +164,12 @@ const router = createBrowserRouter([
    
      {
       path:'myBooks',
-        loader:()=>fetch('http://localhost:5000/books') ,
+        loader:()=>fetch('https://book-server-omega.vercel.app/books') ,
       Component:MyBooks,
      },
      {
      path:'orders',
-    //  loader:()=>fetch('http://localhost:5000/librarian') ,
+    //  loader:()=>fetch('https://book-server-omega.vercel.app/librarian') ,
      Component:Orders,
      },
      {

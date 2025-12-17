@@ -13,7 +13,7 @@ const AllBooks = () => {
  
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allBooks?sort=${sortOrder}&status=published`)
+    fetch(`https://book-server-omega.vercel.app/allBooks?sort=${sortOrder}&status=published`)
       .then(res => res.json())
       .then(data => {
       

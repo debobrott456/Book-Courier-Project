@@ -20,7 +20,7 @@ const MyWishList = () => {
     console.log(books)
     
     return ( <div>
-                    <p className='text-3xl font-bold text-orange-400 text-center m-5'>My WishList</p>
+                    <p className='text-3xl font-bold text-orange-400  m-5'>My WishList</p>
 
          <div className='grid grid-cols-2 gap-5 m-8'>
              { books.map((book)=>

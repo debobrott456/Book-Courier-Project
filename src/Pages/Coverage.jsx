@@ -42,7 +42,7 @@ if(district){
   <input type="search" name="location" required placeholder="Search"   />
 </label>
             </form>
-            <div className='w-5xl h-[700px] mx-auto'>
+            <div className='w-full h-[700px] mx-auto'>
              <MapContainer center={position} zoom={13} scrollWheelZoom={false}
              className='h-[700px]'
              ref={mapRef}>

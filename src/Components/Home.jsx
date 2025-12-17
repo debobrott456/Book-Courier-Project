@@ -33,7 +33,7 @@ const Home = () => {
       .then(data => setDatas(data));
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:5000/recentbooks?status=published`)
+    fetch(`https://book-server-omega.vercel.app/recentbooks?status=published`)
       .then(res => res.json())
       .then(data => {setBooks(data)
     console.log(data)});
