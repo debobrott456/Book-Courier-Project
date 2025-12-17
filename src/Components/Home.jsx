@@ -33,11 +33,7 @@ const Home = () => {
       .then(data => setDatas(data));
   }, []);
   useEffect(() => {
-<<<<<<< HEAD
     fetch(`https://book-server-omega.vercel.app/recentbooks?status=published`)
-=======
-    fetch('http://localhost:5000/recentbooks')
->>>>>>> 5523ff2 (first commit)
       .then(res => res.json())
       .then(data => {setBooks(data)
     console.log(data)});
@@ -92,16 +88,10 @@ const Home = () => {
     </section>
 
     <section>
-<<<<<<< HEAD
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 m-5'>
             {
                 books.map((book)=>
                 <div className='flex gap-3 shadow-2xl rounded-xl '>
-=======
-        <div className='grid grid-cols-3 gap-10'>
-            {
-                books.map((book)=><div className='flex gap-3 shadow-2xl rounded-xl '>
->>>>>>> 5523ff2 (first commit)
                 <img src={book.bookImage} alt="" style={{width:150, heigth:150}}/>
                 <div className='p-3'>
                     <p>Book name :{book.bookName}</p>

@@ -23,10 +23,6 @@ if(district){
 }
 
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 5523ff2 (first commit)
     return (
         <div>
             <form onSubmit={formhandler} className='relative'>
@@ -46,11 +42,7 @@ if(district){
   <input type="search" name="location" required placeholder="Search"   />
 </label>
             </form>
-<<<<<<< HEAD
             <div className='w-full h-[700px] mx-auto'>
-=======
-            <div className='w-5xl h-[700px] mx-auto'>
->>>>>>> 5523ff2 (first commit)
              <MapContainer center={position} zoom={13} scrollWheelZoom={false}
              className='h-[700px]'
              ref={mapRef}>

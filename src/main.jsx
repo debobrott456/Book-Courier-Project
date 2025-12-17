@@ -8,10 +8,6 @@ import { RouterProvider } from "react-router/dom";
 import Root from './Root.jsx';
 import Home from './Components/Home.jsx';
 import AddBooks from './Pages/AddBooks.jsx';
-<<<<<<< HEAD
-=======
-import PrivateRoutes from './Routes/PrivateRoutes.jsx';
->>>>>>> 5523ff2 (first commit)
 import Login from './Pages/Login.jsx';
 import Register from './Pages/Register.jsx';
 import AuthProvider from './Contexts/Authprovider.jsx';
@@ -30,7 +26,6 @@ import Payment from './Dashboard/Payment.jsx';
 import PaymentSuccess from './Dashboard/PaymentSuccess.jsx';
 import UsersManagement from './Pages/UsersManagement.jsx';
 import AdminRoute from './Routes/AdminRoute.jsx';
-<<<<<<< HEAD
 import BeALibrarian from './Pages/BeALibrarian.jsx';
 import LibraryManagement from './Pages/LibraryManagement.jsx';
 import DashBoard from './Pages/DashBoard.jsx';
@@ -39,18 +34,13 @@ import AllBooks from './Pages/AllBooks.jsx';
 import ErrorPage from './Pages/ErrorPage.jsx';
 import MyWishList from './Pages/MyWishList.jsx';
 import ManageBooks from './Pages/ManageBooks.jsx';
-=======
->>>>>>> 5523ff2 (first commit)
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
     path: "/",
     Component:Root,
-<<<<<<< HEAD
      errorElement:<ErrorPage></ErrorPage>,
-=======
->>>>>>> 5523ff2 (first commit)
     children:[
       {
         index:true,
@@ -62,7 +52,6 @@ const router = createBrowserRouter([
       
       {
         path:"/bookDetails/:id",
-<<<<<<< HEAD
          loader:({params})=>fetch(`https://book-server-omega.vercel.app/books/${params.id}`) ,
         Component:BookDetails
       },
@@ -77,10 +66,6 @@ const router = createBrowserRouter([
       {
         path:'/allBooks',
         Component:AllBooks
-=======
-         loader:({params})=>fetch(`http://localhost:5000/books/${params.id}`) ,
-        Component:BookDetails
->>>>>>> 5523ff2 (first commit)
       }
      
     ]
@@ -105,7 +90,6 @@ const router = createBrowserRouter([
     ]
 },
 {
-<<<<<<< HEAD
    path:"/adminDash",
    element:<AdminDashBoard></AdminDashBoard>,
 
@@ -131,18 +115,12 @@ const router = createBrowserRouter([
      }
   ]},
 {
-=======
->>>>>>> 5523ff2 (first commit)
    path:"/userDashboard",
    element:<UserDashboard></UserDashboard>,
 
    children:[
      {
       path : "myOrders",
-<<<<<<< HEAD
-=======
-     loader:()=>fetch('http://localhost:5000/orders') ,
->>>>>>> 5523ff2 (first commit)
       Component:MyOrders
     },
      {
@@ -159,29 +137,18 @@ const router = createBrowserRouter([
       {
       path:"payment/:id",
       Component:Payment,
-<<<<<<< HEAD
       loader:({params})=>fetch(`https://book-server-omega.vercel.app/orders/${params.id}`)   
-=======
-      loader:({params})=>fetch(`http://localhost:5000/orders/${params.id}`)   
->>>>>>> 5523ff2 (first commit)
      },
      {
       path:'payment-success',
       Component:PaymentSuccess,
      },
      {
-<<<<<<< HEAD
       path:'myWishList',
 
       Component:MyWishList,
      },
     
-=======
-      path:'users-management',
-      loader:()=>fetch(`http://localhost:5000/users`) ,
-      element:<AdminRoute><UsersManagement></UsersManagement></AdminRoute>
-     }
->>>>>>> 5523ff2 (first commit)
    ]
 },
 {
@@ -197,32 +164,21 @@ const router = createBrowserRouter([
    
      {
       path:'myBooks',
-<<<<<<< HEAD
         loader:()=>fetch('https://book-server-omega.vercel.app/books') ,
-=======
-        loader:()=>fetch('http://localhost:5000/books') ,
->>>>>>> 5523ff2 (first commit)
       Component:MyBooks,
      },
      {
      path:'orders',
-<<<<<<< HEAD
     //  loader:()=>fetch('https://book-server-omega.vercel.app/librarian') ,
-=======
-    //  loader:()=>fetch('http://localhost:5000/librarian') ,
->>>>>>> 5523ff2 (first commit)
      Component:Orders,
      },
      {
       path:"update/:id",
       Component:Update
-<<<<<<< HEAD
      },
      {
       path:"myProfile",
       Component:MyProfile
-=======
->>>>>>> 5523ff2 (first commit)
      }
     
   ]
