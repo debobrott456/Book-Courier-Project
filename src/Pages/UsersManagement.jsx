@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { use } from 'react';
 
+=======
+import React from 'react';
+import { useLoaderData } from 'react-router';
+>>>>>>> 5523ff2 (first commit)
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
 import Swal from 'sweetalert2';
 import { FaUserShield, FaUserSlash } from 'react-icons/fa';
@@ -8,6 +13,7 @@ import { IoPersonRemoveOutline } from 'react-icons/io5';
 import {  ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UseRole from '../Hooks/UseRole';
+<<<<<<< HEAD
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../Contexts/Context';
 
@@ -35,6 +41,26 @@ if(!user||isLoading){
       </div>
     );
 }
+=======
+// import { useQuery } from '@tanstack/react-query';
+
+const UsersManagement = () => {
+    const axiosSecure=UseAxiosSecure()
+    const users=useLoaderData();
+
+    console.log(users)
+
+    // const {data:users=[]}=useQuery({
+    //  queryKey:['users'],
+    //   queryFn:async ()=>{
+    //     const res=await axiosSecure.get()
+    //   }
+    // }) 
+const role=UseRole()
+
+console.log(role)
+
+>>>>>>> 5523ff2 (first commit)
 
      const handleDelete=(id)=>{
       console.log(id);
@@ -50,9 +76,13 @@ if(!user||isLoading){
       if (result.isConfirmed) {
         
         axiosSecure.delete(`/users/${id}`)
+<<<<<<< HEAD
         .then(res=>{console.log(res)
          refetch()}
       )
+=======
+        .then(res=>console.log(res))
+>>>>>>> 5523ff2 (first commit)
         Swal.fire({
           title: "Removed!",
           text: "User has been removed.",
@@ -78,9 +108,15 @@ if(!user||isLoading){
         
                   console.log(res.data);
                   Swal.fire("Updated!", "User set to be as admin.", "success");
+<<<<<<< HEAD
                   refetch();
                   // Refresh page
                   // window.location.reload();
+=======
+        
+                  // Refresh page
+                  window.location.reload();
+>>>>>>> 5523ff2 (first commit)
                 } catch (err) {
                   console.error(err);
                   Swal.fire("Error!", "Failed to update status", "error");
@@ -104,9 +140,15 @@ if(!user||isLoading){
         
                   console.log(res.data);
                   Swal.fire("Updated!", "Admission permission off.", "success");
+<<<<<<< HEAD
                   refetch()
                   // Refresh page
                   // window.location.reload();
+=======
+        
+                  // Refresh page
+                  window.location.reload();
+>>>>>>> 5523ff2 (first commit)
                 } catch (err) {
                   console.error(err);
                   Swal.fire("Error!", "Failed to update status", "error");
@@ -134,14 +176,22 @@ if(!user||isLoading){
        return (
         <div>
              <div>
+<<<<<<< HEAD
             <p className='text-2xl text-orange-400 font-semibold m-5'>All my users{users.length}</p>
+=======
+            <p>All my users{users.length}</p>
+>>>>>>> 5523ff2 (first commit)
 
             <div className="overflow-x-auto">
   <table className="table table-zebra">
     {/* head */}
     <thead>
       <tr>
+<<<<<<< HEAD
         <th>No</th>
+=======
+        <th></th>
+>>>>>>> 5523ff2 (first commit)
         <th> Name</th>
         <th> Email</th>
         <th>role</th>
@@ -159,7 +209,11 @@ if(!user||isLoading){
         <td>{user.email}</td>
       <td>{user.role}</td>
         <td className='flex gap-3 ml-4'>
+<<<<<<< HEAD
        <td>{user.role=="users"?<button onClick={()=>handleAdmin(user.email)}  className='bg-green-500 btn'><FaUserShield /></button>:<button onClick={()=>handleRemoveAdmin(user.email)} className='btn bg-red-400'><FaUserSlash/></button> }</td>
+=======
+       <td>{user.role=="users"?<button onClick={()=>handleAdmin(user._id)}  className='bg-green-500 btn'><FaUserShield /></button>:<button onClick={()=>handleRemoveAdmin(user._id)} className='btn bg-red-400'><FaUserSlash/></button> }</td>
+>>>>>>> 5523ff2 (first commit)
         </td>
         <td><button className='btn bg-red-400' onClick={()=>handleDelete(user._id)}><IoPersonRemoveOutline /></button></td>
       </tr>)

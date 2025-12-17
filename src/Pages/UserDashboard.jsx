@@ -7,6 +7,7 @@ const UserDashboard = () => {
   const {role}=UseRole()
   console.log(role)
    return (
+<<<<<<< HEAD
     <div>
        <div className="drawer lg:drawer-open">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -69,6 +70,49 @@ const UserDashboard = () => {
       
               
                <li>
+=======
+        <div className='w-full'>
+           <div className="drawer lg:drawer-open">
+  {/* We keep the checkbox only because DaisyUI requires it, but it stays permanently checked by default */}
+  <input id="my-drawer-4" type="checkbox" className="drawer-toggle" checked readOnly />
+
+  <div className="drawer-content flex flex-col">
+    {/* Navbar */}
+    <nav className="navbar w-full bg-red-300">
+      <div className="px-4 text-3xl font-bold">User Dashboard</div>
+    </nav>
+
+   
+
+    <Outlet />
+  </div>
+
+  {/* Permanent Sidebar */}
+  <div className="drawer-side">
+    <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+
+    <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+      {/* Sidebar content here */}
+      <ul className="menu w-full grow">
+        {/* List item */}
+        <li>
+          <Link to={'/'}><button className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-3" data-tip="Homepage">
+            {/* Home icon */}
+<House />            <span className="is-drawer-close:hidden">Homepage</span>
+          </button></Link>
+        </li>
+
+        {/* List item */}
+        <li>
+          <button className="is-drawer-close:tooltip is-drawer-close:tooltip-right flex gap-3 " data-tip="Settings">
+            {/* Settings icon */}
+<Settings />            <span className="is-drawer-close:hidden">Settings</span>
+          </button>
+        </li>
+      
+        {/* My parcel */}
+        <li>
+>>>>>>> 5523ff2 (first commit)
           <Link to={'/userDashboard/myOrders'}><button className='flex gap-2'>
             {/* <IoBookOutline  className="size-4" /> */}
             <BaggageClaim />
@@ -91,6 +135,7 @@ const UserDashboard = () => {
             <CreditCard />
             <span className='text-red-400'>Invoices</span>
           </button></Link>
+<<<<<<< HEAD
           <Link to={'/userDashboard/myWishList'}>
           <button className='flex gap-3'>
             {/* <FaShoppingCart className="size-4" /> */}
@@ -108,6 +153,25 @@ const UserDashboard = () => {
         
     </div>
        
+=======
+        </li>
+       {role.role==="admin" && <>
+        <li>
+          <Link to={'/userDashboard/users-management'}>
+          <button className='flex gap-3'>
+            {/* <FaShoppingCart className="size-4" /> */}
+            <CreditCard />
+            <span>Users Manage</span>
+          </button></Link>
+        </li></>}
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+        </div>
+>>>>>>> 5523ff2 (first commit)
     );
 };
 

@@ -3,13 +3,24 @@ import { Link, Links, NavLink } from 'react-router';
 import { AuthContext } from '../Contexts/Context';
 import { MdLightMode, MdNightlight } from 'react-icons/md';
 import Logo from './Logo';
+<<<<<<< HEAD
+=======
+// core version + navigation, pagination modules:
+
+
+// init Swiper:
+>>>>>>> 5523ff2 (first commit)
 
 
 const Navbar = () => {
 const {user,signOutUser}=use(AuthContext);
+<<<<<<< HEAD
 console.log("Navbar user:", user);
 console.log("photoURL:", user?.photoURL);
 
+=======
+console.log(user)
+>>>>>>> 5523ff2 (first commit)
  
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") || "light"
@@ -21,7 +32,11 @@ console.log("photoURL:", user?.photoURL);
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+<<<<<<< HEAD
 {/*hamle dog*/ }
+=======
+
+>>>>>>> 5523ff2 (first commit)
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
@@ -31,8 +46,12 @@ signOutUser()
 .then(result=>console.log(result.user))
 .catch(error=>console.log(error))
 }
+<<<<<<< HEAD
     const links=<>
     <li><NavLink
+=======
+    const links=<><li><NavLink
+>>>>>>> 5523ff2 (first commit)
         to="/"
         className={({ isActive }) =>
           isActive
@@ -54,15 +73,21 @@ signOutUser()
         All Books
       </NavLink></li>
 
+<<<<<<< HEAD
       {user && <>
        <li><NavLink
         to="/beALibrarian"
+=======
+       <li><NavLink
+        to="/myBooks"
+>>>>>>> 5523ff2 (first commit)
         className={({ isActive }) =>
           isActive
             ? "text-blue-600 font-semibold border-b-2 border-orange-600"
             : "text-gray-600 hover:text-blue-500"
         }
       >
+<<<<<<< HEAD
         Be A Librarian
       </NavLink></li>
       </>}
@@ -82,6 +107,32 @@ signOutUser()
 
     {user && <>
     
+=======
+        My Books
+      </NavLink></li>
+    
+    <li><NavLink
+        to="/addBooks"
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-orange-600"
+            : "text-gray-600 hover:text-blue-500"
+        }
+      >
+        Add Books
+      </NavLink></li>
+
+    {user && <><li><NavLink
+        to="/invoices"
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-orange-600"
+            : "text-gray-600 hover:text-blue-500"
+        }
+      >
+        Invoices
+      </NavLink></li>
+>>>>>>> 5523ff2 (first commit)
   <button
         onClick={toggleTheme}
         className="btn btn-ghost text-xl"
@@ -95,6 +146,7 @@ signOutUser()
     </>}
    </>
     return (
+<<<<<<< HEAD
       
           <div>
             <div className="navbar bg-base-100 shadow-sm">
@@ -121,6 +173,21 @@ signOutUser()
     </ul>
   </div>
    <div className="navbar-end">{user ? (
+=======
+       
+
+        <nav className="navbar bg-base-100 shadow-sm ">
+   <div className="navbar-start">
+    <Logo></Logo>
+  </div>
+
+  <div className="navbar-center ">
+    <ul className="menu menu-horizontal px-1 flex flex-col md:flex-row">
+      {links}
+    </ul>
+  </div>
+  <div className="navbar-end">{user ? (
+>>>>>>> 5523ff2 (first commit)
   <div className="flex items-center gap-1 md:gap-2">
     {user?.photoURL && (
       <div  className="relative inline-block"
@@ -140,9 +207,13 @@ signOutUser()
 )}
     
   </div>
+<<<<<<< HEAD
 </div>
           </div>
      
+=======
+</nav>
+>>>>>>> 5523ff2 (first commit)
     );
 };
 

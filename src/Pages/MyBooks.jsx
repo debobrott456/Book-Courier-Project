@@ -40,10 +40,16 @@ const MyBooks = () => {
   confirmButtonText: "Yes, delete it!"
 }).then((result) => {
   if (result.isConfirmed) {
+<<<<<<< HEAD
     
     axiosSecure.delete(`/allBooks/${id}`)
     .then(res=>{console.log(res)
        refetch()})
+=======
+    refetch();
+    axiosSecure.delete(`/allBooks/${id}`)
+    .then(res=>console.log(res))
+>>>>>>> 5523ff2 (first commit)
     Swal.fire({
       title: "Deleted!",
       text: "Your file has been deleted.",
@@ -56,7 +62,11 @@ const MyBooks = () => {
     return (
         <div>
              <div>
+<<<<<<< HEAD
             <p className='text-3xl font-semibold text-orange-400'>All my Books :{books.length}</p>
+=======
+            <p>All my Books{books.length}</p>
+>>>>>>> 5523ff2 (first commit)
 
             <div className="overflow-x-auto">
   <table className="table table-zebra">
@@ -64,7 +74,11 @@ const MyBooks = () => {
     <thead>
       <tr>
         <th></th>
+<<<<<<< HEAD
         <th className='hidden lg:inline'>Name</th>
+=======
+        <th>Name</th>
+>>>>>>> 5523ff2 (first commit)
         <th>BookImage</th>
         <th>Status</th>
         <th>Action</th>
@@ -76,7 +90,11 @@ const MyBooks = () => {
       {
         books.map((book,index)=> <tr key={book._id}>
         <th>{index+1}</th>
+<<<<<<< HEAD
         <td className='hidden lg:inline'>{book.bookName}</td>
+=======
+        <td>{book.bookName}</td>
+>>>>>>> 5523ff2 (first commit)
        <td className='rounded-xl'><img src={book.bookImage} style={{width:40,height:50}} /></td> 
         <td>{book.status}</td>
       

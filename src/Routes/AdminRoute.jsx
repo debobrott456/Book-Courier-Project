@@ -10,10 +10,13 @@ const AdminRoute = ({children}) => {
     const {loading}=use(AuthContext);
     const {role,roleLoading}=UseRole()
     console.log(role)
+<<<<<<< HEAD
  if(loading||roleLoading){
         return <span className="loading loading-spinner loading-xl text-center"></span>
     }
 
+=======
+>>>>>>> 5523ff2 (first commit)
     if(role.role!=='admin'){
         return   <div className="flex flex-col items-center justify-center h-screen text-center p-5">
       <FaLock className="text-red-500 text-6xl mb-4" />
@@ -28,7 +31,13 @@ const AdminRoute = ({children}) => {
       </a>
     </div>
     }
+<<<<<<< HEAD
    
+=======
+    if(loading||roleLoading){
+        return <span className="loading loading-spinner loading-xl text-center"></span>
+    }
+>>>>>>> 5523ff2 (first commit)
    
     return  children;
 };

@@ -4,15 +4,24 @@ import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 import { MdDelete, MdOutlineCancel } from 'react-icons/md';
 import { AuthContext } from '../Contexts/Context';
+<<<<<<< HEAD
 import { useQuery } from '@tanstack/react-query';
+=======
+import { useState } from "react";
+>>>>>>> 5523ff2 (first commit)
 
 
 
 const Orders = () => {
+<<<<<<< HEAD
+=======
+    const [orders, setOrders] = useState([]);
+>>>>>>> 5523ff2 (first commit)
     const axiosSecure=UseAxiosSecure()
     
 const {user}=use(AuthContext)
 const email=user.email
+<<<<<<< HEAD
 
     const {data:orders=[],refetch}=useQuery({
         queryKey:['books'],
@@ -25,6 +34,18 @@ const email=user.email
  // variable to store response
 
 
+=======
+ // variable to store response
+
+axiosSecure.get(`/librarian/${email}`)
+  .then(res => {
+    setOrders (res.data); // assign data to variable
+    console.log("Librarian data:", orders);
+  })
+  .catch(err => {
+    console.error("Error fetching librarian data:", err);
+  });
+>>>>>>> 5523ff2 (first commit)
     console.log(orders)
     
    const handleStatusChange = (id, newStatus) => {
@@ -40,12 +61,20 @@ const email=user.email
           const res = await axiosSecure.patch(`/librarian/${id}`, {
             lstatus: newStatus,
           });
+<<<<<<< HEAD
            refetch()
+=======
+
+>>>>>>> 5523ff2 (first commit)
           console.log(res.data);
           Swal.fire("Updated!", "Order status updated.", "success");
 
           // Refresh page
+<<<<<<< HEAD
             // setTimeout(() => {window.location.reload();},1800);
+=======
+          window.location.reload();
+>>>>>>> 5523ff2 (first commit)
         } catch (err) {
           console.error(err);
           Swal.fire("Error!", "Failed to update status", "error");
@@ -69,14 +98,22 @@ const email=user.email
     
         axiosSecure.delete(`/librarian/${id}`)
         .then(res=>{console.log(res)
+<<<<<<< HEAD
             refetch()
+=======
+            
+>>>>>>> 5523ff2 (first commit)
         })
         Swal.fire({
           title: "Cancelled!",
           text: "Order has been cancelled.",
           icon: "success"
         });
+<<<<<<< HEAD
         
+=======
+         window.location.reload();
+>>>>>>> 5523ff2 (first commit)
       }
     });
         }

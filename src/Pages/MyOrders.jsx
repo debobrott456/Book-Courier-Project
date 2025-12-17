@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { use } from 'react';
 import { MdDelete } from 'react-icons/md';
 import { Link } from 'react-router';
@@ -18,6 +19,17 @@ const MyOrders = () => {
             return res.data;
         }
     })
+=======
+import React from 'react';
+import { MdDelete } from 'react-icons/md';
+import { Link, useLoaderData } from 'react-router';
+import UseAxiosSecure from '../Hooks/UseAxiosSecure';
+
+const MyOrders = () => {
+    const books=useLoaderData()
+    console.log(books)
+     const axiosSecure = UseAxiosSecure(); // if you use axiosSecure
+>>>>>>> 5523ff2 (first commit)
 
 const handleCancel = async (id) => {
     try {
@@ -46,9 +58,14 @@ const handleCancel = async (id) => {
     {/* head */}
     <thead>
       <tr>
+<<<<<<< HEAD
         <th>No</th>
         <th>Book Name</th>
         <th>Book Image</th>
+=======
+        <th></th>
+        <th>Book Name</th>
+>>>>>>> 5523ff2 (first commit)
         <th>Price</th>
         <th>Status</th>
         <th>Action</th>
@@ -61,7 +78,10 @@ const handleCancel = async (id) => {
         books.map((book,index)=> <tr key={book._id}>
         <th>{index+1}</th>
         <td>{book.bookName}</td>
+<<<<<<< HEAD
         <td><img className='w-8 h-8' src={book.bookImage} /></td>
+=======
+>>>>>>> 5523ff2 (first commit)
        <td>{book.bookPrice}</td>
         <td className={book.status === "paid" ? "text-green-500" : ""}>{book.status}</td>
       
