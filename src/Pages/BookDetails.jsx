@@ -3,20 +3,13 @@ import { Link, useLoaderData } from 'react-router';
 import { AuthContext } from '../Contexts/Context';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
 import { toast, ToastContainer } from 'react-toastify';
-<<<<<<< HEAD
-import { AiOutlineLike } from "react-icons/ai";
-import 'react-toastify/dist/ReactToastify.css';
-import Swal from 'sweetalert2';
-import { MdBookmarkAdded } from 'react-icons/md';
-=======
 
 import 'react-toastify/dist/ReactToastify.css';
->>>>>>> 5523ff2 (first commit)
+import Swal from 'sweetalert2';
 
 
 const BookDetails = () => {
     const books=useLoaderData()
-<<<<<<< HEAD
     
 
   const handleLike = async (bookId, currentLikes) => {
@@ -35,16 +28,12 @@ const BookDetails = () => {
     console.error("Error updating like:", error);
   }
 };
-=======
->>>>>>> 5523ff2 (first commit)
       const book = books[0]; 
   const { user } = use(AuthContext);
   console.log(user)
   const axiosSecure = UseAxiosSecure();
 
   const [isOpen, setIsOpen] = useState(false);
-
-<<<<<<< HEAD
 
 
 const addToWishlist = async (book) => {
@@ -81,8 +70,7 @@ const addToWishlist = async (book) => {
 };
 
 
-=======
->>>>>>> 5523ff2 (first commit)
+
     const handleOrder = async (e) => {
     e.preventDefault();
 
@@ -122,7 +110,6 @@ const addToWishlist = async (book) => {
     // close modal
     setIsOpen(false);
   };
-<<<<<<< HEAD
     console.log(books[0].bookImage)
     return (
         <div>
@@ -148,20 +135,6 @@ const addToWishlist = async (book) => {
             <span>{books[0].likes}</span>
             <button className='btn' onClick={()=>addToWishlist(book)}><span>Add to <br></br> WishList</span> <MdBookmarkAdded /></button>
           </div>                
-=======
-    console.log(books)
-    return (
-        <div>
-            <div className='flex gap-3 shadow-2xl rounded-xl m-10 max-h-[800px] max-w-[500px]'>
-              <div >  <img src={books[0].bookImage} alt="" className="w-[380px] h-[450px]"/></div>
-                <div className='p-3 flex flex-col gap-5'>
-                    <p className='text-2xl font-semibold'>Book Name:{books[0].bookName}</p>
-                    <p>Book Author :{books[0].authorName}</p>
-                    <p className='text-amber-500'>Book Price :{books[0].bookPrice}</p>
- <button className='btn btn-warning' onClick={() => setIsOpen(true)}>
-            Order Now
-          </button>                  
->>>>>>> 5523ff2 (first commit)
                 </div>
                 </div>
 

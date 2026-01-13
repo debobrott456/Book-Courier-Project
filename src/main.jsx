@@ -14,7 +14,7 @@ import AuthProvider from './Contexts/Authprovider.jsx';
 import AuthLayout from './Layout/AuthLayout.jsx';
 import Orders from './Pages/Orders.jsx';
 import MyBooks from './Pages/MyBooks.jsx';
-import DashBoardLayout from './Pages/dashBoardLayout.jsx';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Update from './Pages/Update.jsx';
 import UserDashboard from './Pages/UserDashboard.jsx';
@@ -34,6 +34,8 @@ import AllBooks from './Pages/AllBooks.jsx';
 import ErrorPage from './Pages/ErrorPage.jsx';
 import MyWishList from './Pages/MyWishList.jsx';
 import ManageBooks from './Pages/ManageBooks.jsx';
+import DashBoardLayout from './Pages/dashBoardLayout.jsx';
+
 
 const queryClient = new QueryClient()
 const router = createBrowserRouter([
