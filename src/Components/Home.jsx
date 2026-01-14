@@ -4,6 +4,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import img1 from '../assets/blog6-best-1330x620.jpg'
 import img2 from '../assets/banner2-1330x620 (1).jpg'
 import img3 from '../assets/janko-ferlic-sfL_QOnmy00-unsplash.jpg';
+import img4 from '../assets/blog-5.jpg';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import '../Styles/Banner.css'
@@ -20,12 +22,22 @@ import Coverage from '../Pages/Coverage';
 import { Link } from 'react-router';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
 import Category from './Category';
+import BookCard from '../Pages/BookCard';
+import Features from './Features';
+import Contact from '../Pages/Contact';
+import FAQ from '../Pages/FAQ';
+import FeaturedBooks from './FeaturedBooks';
+import { Outdent } from 'lucide-react';
+import OurServices from './OurServices';
+
 
 const Home = () => {
 
 
  const [datas, setDatas] = useState([]);
  const [books, setBooks] = useState([]);
+   const [loading, setLoading] = useState(true);
+
 
 
   useEffect(() => {
@@ -37,11 +49,13 @@ const Home = () => {
     fetch(`https://book-server-omega.vercel.app/recentbooks?status=published`)
       .then(res => res.json())
       .then(data => {setBooks(data)
+        setLoading(false)
     console.log(data)});
   }, []);
 
 
-
+   if (loading) return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-bars loading-lg text-amber-500"></span></div>;
+  if (!books) return <p>Job not found</p>;
 
     return (
         <div className='max-w-8xl mx-auto my-10 '>
@@ -108,8 +122,10 @@ const Home = () => {
   </Carousel>
 </div>
 
+<section><Features></Features></section>
+<section><OurServices></OurServices></section>
 
-<div className='m-14'><Coverage datas={datas}></Coverage></div>
+
 <div><Category></Category></div>
 
             {/* <section className="reliability-section m-8">
@@ -135,24 +151,27 @@ const Home = () => {
         </div>
       </div>
     </section> */}
+    <section>
+      <FeaturedBooks></FeaturedBooks>
+    </section>
 
     <section>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 m-5'>
+        <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center">
+                        Recent <span className="text-[#d34e2d]">Books</span>
+                    </h2>
+        <div className='grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-5 gap-10 m-5'>
+          
             {
                 books.map((book)=>
-                <div className='flex gap-3 shadow-2xl rounded-xl '>
-                <img src={book.bookImage} alt="" style={{width:150, heigth:150}}/>
-                <div className='p-3'>
-                    <p>Book name :{book.bookName}</p>
-                    <p>Book Author :{book.authorName}</p>
-                    <p>Book Price :{book.bookPrice}</p>
-                    <Link to={`/bookDetails/${book._id}`}><button className='btn btn-warning'>View Details</button></Link>
-                  
-                </div>
-                </div>)
+                  <BookCard book={book}></BookCard>
+               )
             }
         </div>
     </section>
+    <section className='flex flex-col lg:flex-row gap-5'><div className='flex-1'><img className='w-full h-[520px]' src={img4} alt="" /></div><div className='flex-1'><FAQ></FAQ></div></section>
+    <div className='m-14'><Coverage datas={datas}></Coverage></div>
+<section><Contact></Contact></section>
+    
             
         </div>
         

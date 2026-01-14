@@ -35,6 +35,9 @@ import ErrorPage from './Pages/ErrorPage.jsx';
 import MyWishList from './Pages/MyWishList.jsx';
 import ManageBooks from './Pages/ManageBooks.jsx';
 import DashBoardLayout from './Pages/dashBoardLayout.jsx';
+import LibrarianDashboardHome from './Pages/LibrarianDashboardHome.jsx';
+import UserDashboardHome from './Pages/UserDashboardHome.jsx';
+import AdminDashboardHome from './Pages/AdminDashboardHome.jsx';
 
 
 const queryClient = new QueryClient()
@@ -97,6 +100,10 @@ const router = createBrowserRouter([
 
    children:[
      {
+      index: true,
+      element:<AdminRoute><AdminDashboardHome></AdminDashboardHome></AdminRoute>
+     },
+     {
       path:'users-management',
       // loader:()=>fetch(`https://book-server-omega.vercel.app/users`) ,
       element:<AdminRoute><UsersManagement></UsersManagement></AdminRoute>
@@ -121,6 +128,10 @@ const router = createBrowserRouter([
    element:<UserDashboard></UserDashboard>,
 
    children:[
+     {
+      index: true,
+      Component:UserDashboardHome
+     },
      {
       path : "myOrders",
       Component:MyOrders
@@ -158,6 +169,10 @@ const router = createBrowserRouter([
   element:<DashBoardLayout></DashBoardLayout>,
 
   children:[
+    {
+      index: true,
+      Component:LibrarianDashboardHome
+    },
     {
       path : "addBooks",
      

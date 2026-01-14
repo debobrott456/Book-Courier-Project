@@ -10,6 +10,8 @@ const AllBooks = () => {
     const [sortOrder, setSortOrder] = useState("desc");
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [searchParams] = useSearchParams();
+      const [loading, setLoading] = useState(true);
+
     
     // Filter states
     const [priceRange, setPriceRange] = useState({ min: '', max: '' });
@@ -31,6 +33,7 @@ const AllBooks = () => {
             .then(res => res.json())
             .then(data => {
                 setJobs(data);
+                setLoading(false)
             });
     }, [sortOrder]);
 
@@ -85,6 +88,8 @@ const AllBooks = () => {
     };
 
     const filteredBooks = getFilteredBooks();
+       if (loading) return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-bars loading-lg text-amber-500"></span></div>;
+  if (!jobs) return <p>Job not found</p>;
     return (
         <div className="m-5">
             {/* Page Title - Show category name if filtering */}

@@ -42,9 +42,9 @@ if(district){
   <input type="search" name="location" required placeholder="Search"   />
 </label>
             </form>
-            <div className='w-full h-[700px] mx-auto'>
+            <div className='w-full h-[500px] mx-auto'>
              <MapContainer center={position} zoom={13} scrollWheelZoom={false}
-             className='h-[700px]'
+             className='h-[500px]'
              ref={mapRef}>
     <TileLayer
       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

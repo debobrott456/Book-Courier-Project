@@ -3,12 +3,15 @@ import { Link, Links, NavLink } from 'react-router';
 import { AuthContext } from '../Contexts/Context';
 import { MdLightMode, MdNightlight } from 'react-icons/md';
 import Logo from './Logo';
+import UseRole from '../Hooks/UseRole';
 
 
 const Navbar = () => {
 const {user,signOutUser}=use(AuthContext);
+const { role } = UseRole();
 console.log("Navbar user:", user);
 console.log("photoURL:", user?.photoURL);
+console.log("User role:", role);
 
  
   const [theme, setTheme] = useState(
@@ -31,6 +34,20 @@ signOutUser()
 .then(result=>console.log(result.user))
 .catch(error=>console.log(error))
 }
+
+// Determine dashboard route based on user role
+const getDashboardRoute = () => {
+  if (!user) return '/dashBoard';
+  
+  if (role?.role === 'admin') {
+    return '/adminDash';
+  } else if (role?.role === 'librarian') {
+    return '/dashboard';
+  } else {
+    return '/userDashboard';
+  }
+};
+
     const links=<>
     <li><NavLink
         to="/"
@@ -68,7 +85,7 @@ signOutUser()
       </>}
       {user && <>
        <li><NavLink
-        to="/dashBoard"
+        to={getDashboardRoute()}
         className={({ isActive }) =>
           isActive
             ? "text-blue-600 font-semibold border-b-2 border-orange-600"

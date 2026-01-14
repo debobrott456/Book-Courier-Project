@@ -1,120 +1,141 @@
-import { CreditCard } from 'lucide-react';
-import React from 'react';
-import { CiDeliveryTruck } from 'react-icons/ci';
-import {  FaBook, FaClipboardList,  FaUser,  FaUsers } from 'react-icons/fa';
-import { IoBookOutline } from 'react-icons/io5';
+import { useState } from 'react';
+import { Home, Users, BookOpen, User, Menu, X, ChevronDown, ChevronRight, Library, LayoutDashboard } from 'lucide-react';
 import { Link, Outlet } from 'react-router';
 import UseRole from '../Hooks/UseRole';
-import { MdOutlineLocalLibrary } from 'react-icons/md';
 
 const AdminDashBoard = () => {
-    
-const {role}=UseRole();
-  
-  
+    const { role } = UseRole();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isCollapsed, setIsCollapsed] = useState(false);
 
-  
-   
-   return (
-   <div>
- 
-  <div className="drawer lg:drawer-open">
-    <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+    const menuItems = [
+        {
+            title: 'Dashboard',
+            icon: <LayoutDashboard size={20} />,
+            path: '/adminDash',
+            show: true
+        },
+        {
+            title: 'Homepage',
+            icon: <Home size={20} />,
+            path: '/',
+            show: true
+        },
+        {
+            title: 'Users Manage',
+            icon: <Users size={20} />,
+            path: '/adminDash/users-management',
+            show: role?.role === 'admin'
+        },
+        {
+            title: 'Librarian Manage',
+            icon: <Library size={20} />,
+            path: '/adminDash/libmanage',
+            show: role?.role === 'admin'
+        },
+        {
+            title: 'Books Manage',
+            icon: <BookOpen size={20} />,
+            path: '/adminDash/booksmanage',
+            show: role?.role === 'admin'
+        },
+        {
+            title: 'My Profile',
+            icon: <User size={20} />,
+            path: '/adminDash/myProfile',
+            show: role?.role === 'admin'
+        },
+    ];
 
-    {/* Main Content */}
-    <div className="drawer-content flex flex-col lg:pl-64">
-      {/* Navbar */}
-      <nav className="navbar bg-base-300 sticky top-0 z-30">
-        <label
-          htmlFor="my-drawer-4"
-          className="btn btn-square btn-ghost lg:hidden"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </label>
+    return (
+        <div className="flex h-screen bg-gray-100">
+            {/* Sidebar */}
+            <aside
+                className={`
+                    fixed lg:static inset-y-0 left-0 z-50
+                    bg-white shadow-lg
+                    transition-all duration-300 ease-in-out
+                    ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+                    ${isCollapsed ? 'lg:w-20' : 'lg:w-64'}
+                    w-64
+                `}
+            >
+                {/* Sidebar Header */}
+                <div className="flex items-center justify-between p-4 border-b">
+                    {!isCollapsed && (
+                        <h2 className="text-xl font-bold text-gray-800">Admin Panel</h2>
+                    )}
+                    <button
+                        onClick={() => setIsCollapsed(!isCollapsed)}
+                        className="hidden lg:block p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    >
+                        {isCollapsed ? <ChevronRight size={20} /> : <ChevronDown size={20} />}
+                    </button>
+                    <button
+                        onClick={() => setIsSidebarOpen(false)}
+                        className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                    >
+                        <X size={20} />
+                    </button>
+                </div>
 
-   <h1 className="text-3xl font-bold text-orange-400 mx-auto">
-          Admin Dashboard
-        </h1>
-      </nav>
+                {/* Menu Items */}
+                <nav className="p-4">
+                    <ul className="space-y-2">
+                        {menuItems.filter(item => item.show).map((item, index) => (
+                            <li key={index}>
+                                <Link
+                                    to={item.path}
+                                    onClick={() => setIsSidebarOpen(false)}
+                                    className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-[#fde8e3] hover:text-[#d34e2d] transition-colors group"
+                                >
+                                    <span className="text-gray-600 group-hover:text-[#d34e2d]">
+                                        {item.icon}
+                                    </span>
+                                    {!isCollapsed && (
+                                        <span className="font-medium text-gray-700 group-hover:text-[#d34e2d]">
+                                            {item.title}
+                                        </span>
+                                    )}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </aside>
 
-      {/* Page Content */}
-      <div className="p-10 bg-gray-100 min-h-screen">
-       
-        <Outlet />
-      </div>
-    </div>
+            {/* Overlay for mobile */}
+            {isSidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+                    onClick={() => setIsSidebarOpen(false)}
+                />
+            )}
 
-    {/* Sidebar */}
-    <div className="drawer-side z-40">
-      <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+            {/* Main Content */}
+            <div className="flex-1 flex flex-col overflow-hidden">
+                {/* Top Navbar */}
+                <header className="bg-white shadow-sm sticky top-0 z-30">
+                    <div className="flex items-center justify-between px-6 py-4">
+                        <button
+                            onClick={() => setIsSidebarOpen(true)}
+                            className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                        >
+                            <Menu size={24} />
+                        </button>
+                        <h1 className="text-2xl font-bold text-gray-800">
+                            Admin <span className="text-[#d34e2d]">Dashboard</span>
+                        </h1>
+                        <div className="w-10 lg:w-0"></div>
+                    </div>
+                </header>
 
-      <aside className="bg-base-200 w-64 lg:w-64 lg:fixed lg:h-full">
-        <ul className="menu p-4 gap-1">
-
-          {/* Home */}
-          <li>
-            <Link to="/" className="flex items-center gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                  d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2h-4v-6h-6v6H5a2 2 0 0 1-2-2z" />
-              </svg>
-              <span className="">Homepage</span>
-            </Link>
-          </li>
-
-          {/* Admin Links */}
-          {role.role === "admin" && (
-            <>
-              <li>
-                <Link to="/adminDash/users-management" className="flex items-center gap-3">
-                  <FaUsers />
-                  <span className="">Users Manage</span>
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/adminDash/libmanage" className="flex items-center gap-3">
-                  <MdOutlineLocalLibrary />
-                  <span className="">Librarian Manage</span>
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/adminDash/booksmanage" className="flex items-center gap-3">
-                  <FaBook />
-                  <span className="">Books Manage</span>
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/adminDash/myProfile" className="flex items-center gap-3">
-                  <FaUser />
-                  <span className="">My Profile</span>
-                </Link>
-              </li>
-            </>
-          )}
-        </ul>
-      </aside>
-    </div>
-  </div>
-   </div>
-       
+                {/* Page Content */}
+                <main className="flex-1 overflow-y-auto p-6">
+                    <Outlet />
+                </main>
+            </div>
+        </div>
     );
 };
 

@@ -41,8 +41,9 @@ const Category = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">Top Categories</h2>
-                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+  <h2 className="text-3xl font-bold text-gray-900 mb-3">
+                        Top <span className="text-[#d34e2d]">Category</span>
+                    </h2>                    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                         Discover your favorite genres and explore our curated collection of books
                     </p>
                 </div>
@@ -86,7 +87,7 @@ const Category = () => {
                 <div className="text-center mt-12">
                     <Link
                         to="/allBooks"
-                        className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gray-900 hover:bg-gray-800 transition-colors duration-300"
+                        className="inline-flex items-center px-8 py-1 border border-transparent text-base font-medium rounded-lg text-white bg-[#480f0f] hover:bg-gray-800 transition-colors duration-300"
                     >
                         View All Books
                         <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
