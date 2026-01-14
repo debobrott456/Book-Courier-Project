@@ -4,7 +4,8 @@ import { AuthContext } from '../Contexts/Context';
 import { useNavigate } from 'react-router';
 
 const axiosSecure=axios.create({
-    baseURL:'https://book-server-omega.vercel.app/'
+    // baseURL:'https://book-server-omega.vercel.app/'
+    baseURL:'http://localhost:5000'
 }
 )
 

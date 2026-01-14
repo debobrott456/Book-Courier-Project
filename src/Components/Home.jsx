@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import img1 from '../assets/book1.jpg'
-import img2 from '../assets/photo1.jpg'
-import img3 from '../assets/photo2.jpg';
+import img1 from '../assets/blog6-best-1330x620.jpg'
+import img2 from '../assets/banner2-1330x620 (1).jpg'
+import img3 from '../assets/janko-ferlic-sfL_QOnmy00-unsplash.jpg';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import '../Styles/Banner.css'
@@ -19,6 +19,7 @@ import Coverage from '../Pages/Coverage';
 // import book6 from '../assets/psychology_money_crwg.jpg'
 import { Link } from 'react-router';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
+import Category from './Category';
 
 const Home = () => {
 
@@ -43,27 +44,75 @@ const Home = () => {
 
 
     return (
-        <div className='max-w-7xl mx-auto my-10 '>
-            <div className='max-h-[700px]'>
-                 <Carousel  infiniteLoop={true} autoPlay={true} stopOnHover={false}   showThumbs={false} >
-<div>
-<img  style={{width:600 ,height:600}} src={img1} />
+        <div className='max-w-8xl mx-auto my-10 '>
+          <div className="max-h-[700px]">
+  <Carousel
+    infiniteLoop={true}
+    autoPlay={true}
+    stopOnHover={false}
+    showThumbs={false}
+  >
+    {/* Slide 1 */}
+    <div className="relative">
+      <img
+        src={img1}
+        style={{ width: 1600, height: 480 }}
+        alt=""
+      />
 
-</div>
-<div>
-<img style={{width:600 ,height:600}} src={img2} />
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-white bg-black/40">
+        <h2 className="text-4xl font-bold mb-2">
+          Book Courier Service
+        </h2>
+        <p className="text-lg">
+          Fast & reliable book delivery
+        </p>
+      </div>
+    </div>
 
-</div>
-<div>
-<img style={{width:600  ,height:600}} src={img3} />
+    {/* Slide 2 */}
+    <div className="relative">
+      <img
+        src={img2}
+        style={{ width: 1400, height: 480 }}
+        alt=""
+      />
 
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-white bg-black/40">
+        <h2 className="text-4xl font-bold mb-2">
+          Nationwide Delivery
+        </h2>
+        <p className="text-lg">
+          We deliver books all over the country
+        </p>
+      </div>
+    </div>
+
+    {/* Slide 3 */}
+    <div className="relative">
+      <img
+        src={img3}
+        style={{ width: 1400, height: 480 }}
+        alt=""
+      />
+
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-white bg-black/40">
+        <h2 className="text-4xl font-bold mb-2">
+          Safe & Secure
+        </h2>
+        <p className="text-lg">
+          Your books are handled with care
+        </p>
+      </div>
+    </div>
+  </Carousel>
 </div>
-</Carousel>
-            </div>
+
 
 <div className='m-14'><Coverage datas={datas}></Coverage></div>
+<div><Category></Category></div>
 
-            <section className="reliability-section m-8">
+            {/* <section className="reliability-section m-8">
       <div className="reliability-content">
         <h2>Why Choose Book Courier</h2>
         <p>
@@ -85,7 +134,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </section>
+    </section> */}
 
     <section>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 m-5'>

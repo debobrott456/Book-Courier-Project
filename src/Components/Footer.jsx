@@ -1,9 +1,6 @@
 import React from 'react';
 import { Mail, MapPin, Phone } from "lucide-react";
-<<<<<<< HEAD
 import { Link } from 'react-router';
-=======
->>>>>>> 5523ff2 (first commit)
 const Footer = () => {
     return (
    <footer className="w-full bg-violet-200  mt-1">
@@ -12,7 +9,6 @@ const Footer = () => {
 
 It connects readers with nearby couriers, ensuring quick delivery and real-time tracking. <br />
 </p></div>
-<<<<<<< HEAD
   
 
 
@@ -37,17 +33,6 @@ It connects readers with nearby couriers, ensuring quick delivery and real-time 
         </div>
 
     
-=======
-  <div><h3>Company</h3>
-  <p>About Us</p>
-  <p>Our Mission</p>
-  </div>
-  <div><h3>Services</h3>
-  <p>Product and services</p>
-  <p>Customer stories</p>
-  </div>
-  
->>>>>>> 5523ff2 (first commit)
   
 
  {/* Contact */}
