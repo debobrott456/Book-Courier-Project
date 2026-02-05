@@ -1,4 +1,4 @@
-import { use } from 'react';
+import { use, useState } from 'react';
 import { FileText, CreditCard } from 'lucide-react';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
@@ -7,14 +7,18 @@ import { AuthContext } from '../Contexts/Context';
 const Invoices = () => {
     const { user } = use(AuthContext);
     const axiossecure = UseAxiosSecure();
-    
+       const [loading, setLoading] = useState(true);
+
     const { data: payments = [] } = useQuery({
         queryKey: ['payments', user?.email],
         queryFn: async () => {
             const res = await axiossecure.get(`/payments?email=${user.email}`);
+            setLoading(false)
             return res.data;
         }
     });
+       if (loading) return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-bars loading-lg text-amber-500"></span></div>;
+
 
     return (
         <div className="space-y-6">

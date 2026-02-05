@@ -60,7 +60,7 @@ const LibrarianDashboardHome = () => {
         { name: 'Unpublished', value: unpublishedBooks },
     ];
 
-    const COLORS = ['#d34e2d', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6'];
+    const COLORS = ['#b95a5aff', '#45b76fff', '#ce5b1dff', '#45bc71ff', '#c35454ff'];
 
     return (
         <div className="space-y-6">
@@ -129,7 +129,7 @@ const LibrarianDashboardHome = () => {
                             <YAxis />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="orders" fill="#d34e2d" />
+                            <Bar dataKey="orders" fill="#c15252ff" />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>
@@ -173,7 +173,7 @@ const LibrarianDashboardHome = () => {
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="value" fill="#d34e2d" />
+                        <Bar dataKey="value" fill="#3fbe6dff" />
                     </BarChart>
                 </ResponsiveContainer>
             </div>

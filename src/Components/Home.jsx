@@ -58,7 +58,7 @@ const Home = () => {
   if (!books) return <p>Job not found</p>;
 
     return (
-        <div className='max-w-8xl mx-auto my-10 '>
+        <div className='max-w-8xl mx-auto my-10'>
           <div className="max-h-[700px]">
   <Carousel
     infiniteLoop={true}
@@ -70,8 +70,8 @@ const Home = () => {
     <div className="relative">
       <img
         src={img1}
-        style={{ width: 1600, height: 480 }}
-        alt=""
+        className="w-full h-[480px] object-cover"
+        alt="Book Courier Service"
       />
 
       <div className="absolute inset-0 flex flex-col justify-center items-center text-white bg-black/40">
@@ -88,8 +88,8 @@ const Home = () => {
     <div className="relative">
       <img
         src={img2}
-        style={{ width: 1400, height: 480 }}
-        alt=""
+        className="w-full h-[480px] object-cover"
+        alt="Nationwide Delivery"
       />
 
       <div className="absolute inset-0 flex flex-col justify-center items-center text-white bg-black/40">
@@ -106,8 +106,8 @@ const Home = () => {
     <div className="relative">
       <img
         src={img3}
-        style={{ width: 1400, height: 480 }}
-        alt=""
+        className="w-full h-[480px] object-cover"
+        alt="Safe & Secure"
       />
 
       <div className="absolute inset-0 flex flex-col justify-center items-center text-white bg-black/40">
@@ -122,11 +122,11 @@ const Home = () => {
   </Carousel>
 </div>
 
-<section><Features></Features></section>
-<section><OurServices></OurServices></section>
+<section className="mx-[50px]"><Features></Features></section>
+<section className="mx-[50px]"><OurServices></OurServices></section>
 
 
-<div><Category></Category></div>
+<div className="mx-[50px]"><Category></Category></div>
 
             {/* <section className="reliability-section m-8">
       <div className="reliability-content">
@@ -151,15 +151,15 @@ const Home = () => {
         </div>
       </div>
     </section> */}
-    <section>
+    <section className="mx-[50px]">
       <FeaturedBooks></FeaturedBooks>
     </section>
 
-    <section>
+    <section className="mx-[50px]">
         <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center">
                         Recent <span className="text-[#d34e2d]">Books</span>
                     </h2>
-        <div className='grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-5 gap-10 m-5'>
+        <div className='grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-5 gap-3'>
           
             {
                 books.map((book)=>
@@ -168,9 +168,9 @@ const Home = () => {
             }
         </div>
     </section>
-    <section className='flex flex-col lg:flex-row gap-5'><div className='flex-1'><img className='w-full h-[520px]' src={img4} alt="" /></div><div className='flex-1'><FAQ></FAQ></div></section>
-    <div className='m-14'><Coverage datas={datas}></Coverage></div>
-<section><Contact></Contact></section>
+    <section className='flex flex-col lg:flex-row gap-5 mx-[50px] my-[50px]'><div className='flex-1'><img className='w-full h-[520px]' src={img4} alt="" /></div><div className='flex-1'><FAQ></FAQ></div></section>
+    <div className='mx-[50px] my-14'><Coverage datas={datas}></Coverage></div>
+<section className="mx-[50px]"><Contact></Contact></section>
     
             
         </div>

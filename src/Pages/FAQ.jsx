@@ -37,7 +37,7 @@ export default function FAQ() {
   };
 
   return (
-    <div className="faq-container">
+    <div className="faq-container ">
      <h2 className="text-3xl font-bold text-gray-900 mb-3">
                         Frequently Asked <span className="text-[#d34e2d]">Question</span>
                     </h2>

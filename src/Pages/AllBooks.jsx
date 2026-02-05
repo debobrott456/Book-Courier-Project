@@ -91,7 +91,7 @@ const AllBooks = () => {
        if (loading) return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-bars loading-lg text-amber-500"></span></div>;
   if (!jobs) return <p>Job not found</p>;
     return (
-        <div className="m-5">
+        <div className="m-[50px]">
             {/* Page Title - Show category name if filtering */}
         
 

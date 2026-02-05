@@ -1,4 +1,4 @@
-import { use } from 'react';
+import { use, useState} from 'react';
 import { Edit2, Trash2 } from 'lucide-react';
 import { Link } from 'react-router';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
@@ -9,11 +9,13 @@ import { useQuery } from '@tanstack/react-query';
 const MyBooks = () => {
     const axiosSecure = UseAxiosSecure();
     const { user } = use(AuthContext);
+   const [loading, setLoading] = useState(true);
 
     const { data: books = [], refetch } = useQuery({
         queryKey: ['books', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/myBooks?email=${user.email}`);
+            setLoading(false);
             return res.data;
         }
     });
@@ -40,7 +42,10 @@ const MyBooks = () => {
                     });
             }
         });
+        
     };
+       if (loading) return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-bars loading-lg text-amber-500"></span></div>;
+
 
     return (
         <div className="space-y-6">

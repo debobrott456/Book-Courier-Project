@@ -36,12 +36,14 @@ const LibraryManagement = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/libUser/${id}`)
                     .then(res => {
-                        refetch();
+                       if (res.data.deletedCount > 0) {
+                          refetch();
                         Swal.fire({
                             title: "Removed!",
                             text: "User has been removed.",
                             icon: "success"
                         });
+                    }
                     });
             }
         });
@@ -65,8 +67,12 @@ const LibraryManagement = () => {
                     const res1 = await axiosSecure.patch(`/librarianrole/${email}`, {
                         role: "librarian"
                     });
-                    Swal.fire("Updated!", "User set as Librarian.", "success");
+                    console.log(res1.data)
+                     if (res.data.modifiedCount > 0) {
+                        Swal.fire("Updated!", "User set as Librarian.", "success");
                     refetch();
+                     }
+                    
                 } catch (err) {
                     console.error(err);
                     Swal.fire("Error!", "Failed to update status", "error");
@@ -93,8 +99,11 @@ const LibraryManagement = () => {
                     const res1 = await axiosSecure.patch(`/librarianrole/${email}`, {
                         role: "users",
                     });
-                    Swal.fire("Updated!", "Librarian permission removed.", "success");
+                    console.log(res.data)
+                     if (res1.data.modifiedCount > 0) {
+                        Swal.fire("Updated!", "Librarian permission removed.", "success");
                     refetch();
+                     }
                 } catch (err) {
                     console.error(err);
                     Swal.fire("Error!", "Failed to update status", "error");

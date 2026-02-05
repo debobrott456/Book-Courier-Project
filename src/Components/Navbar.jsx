@@ -37,7 +37,7 @@ signOutUser()
 
 // Determine dashboard route based on user role
 const getDashboardRoute = () => {
-  if (!user) return '/dashBoard';
+  if (!user) return '/dashBoards';
   
   if (role?.role === 'admin') {
     return '/adminDash';
@@ -71,7 +71,7 @@ const getDashboardRoute = () => {
         All Books
       </NavLink></li>
 
-      {user && <>
+    
        <li><NavLink
         to="/beALibrarian"
         className={({ isActive }) =>
@@ -82,8 +82,8 @@ const getDashboardRoute = () => {
       >
         Be A Librarian
       </NavLink></li>
-      </>}
-      {user && <>
+      
+    
        <li><NavLink
         to={getDashboardRoute()}
         className={({ isActive }) =>
@@ -94,7 +94,27 @@ const getDashboardRoute = () => {
       >
         DashBoard
       </NavLink></li>
-      </>}
+       <li><NavLink
+        to={"/faq"}
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-orange-600"
+            : "text-gray-600 hover:text-blue-500"
+        }
+      >
+        FAQ
+      </NavLink></li>
+       <li><NavLink
+        to={"/about"}
+        className={({ isActive }) =>
+          isActive
+            ? "text-blue-600 font-semibold border-b-2 border-orange-600"
+            : "text-gray-600 hover:text-blue-500"
+        }
+      >
+        About Us
+      </NavLink></li>
+      
    
 
     {user && <>

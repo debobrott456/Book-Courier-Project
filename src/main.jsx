@@ -38,6 +38,9 @@ import DashBoardLayout from './Pages/dashBoardLayout.jsx';
 import LibrarianDashboardHome from './Pages/LibrarianDashboardHome.jsx';
 import UserDashboardHome from './Pages/UserDashboardHome.jsx';
 import AdminDashboardHome from './Pages/AdminDashboardHome.jsx';
+import FAQ from './Pages/FAQ.jsx';
+import About from './Components/About.jsx';
+import PrivateRoutes from './Routes/PrivateRoutes.jsx';
 
 
 const queryClient = new QueryClient()
@@ -62,15 +65,25 @@ const router = createBrowserRouter([
       },
       {
         path:"/beALibrarian",
-        Component:BeALibrarian
+       element:<PrivateRoutes><BeALibrarian></BeALibrarian></PrivateRoutes>
       },
       {
-        path:'/dashBoard',
-        Component:DashBoard
+        path:'/dashBoards',
+        element:<PrivateRoutes><DashBoard></DashBoard></PrivateRoutes>
       },
       {
         path:'/allBooks',
         Component:AllBooks
+      }
+      ,
+      {
+        path:'/faq',
+        Component:FAQ
+      }
+      ,
+      {
+        path:'/about',
+        Component:About
       }
      
     ]

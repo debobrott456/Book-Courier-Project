@@ -40,12 +40,14 @@ const UsersManagement = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/users/${id}`)
                     .then(res => {
-                        refetch();
+                        if (res.data.deletedCount > 0) {
+                             refetch();
                         Swal.fire({
                             title: "Removed!",
                             text: "User has been removed.",
                             icon: "success"
                         });
+                    }
                     });
             }
         });
@@ -66,8 +68,10 @@ const UsersManagement = () => {
                     const res = await axiosSecure.patch(`/usersrole/${id}`, {
                         role: "admin",
                     });
-                    Swal.fire("Updated!", "User set as admin.", "success");
-                    refetch();
+                    if (res.data.modifiedCount > 0) {
+          Swal.fire("Updated!", "User set as admin.", "success");
+          refetch();
+        }
                 } catch (err) {
                     console.error(err);
                     Swal.fire("Error!", "Failed to update status", "error");
@@ -91,8 +95,10 @@ const UsersManagement = () => {
                     const res = await axiosSecure.patch(`/usersrole/${id}`, {
                         role: "users",
                     });
-                    Swal.fire("Updated!", "Admin permission removed.", "success");
-                    refetch();
+                    if (res.data.modifiedCount > 0) {
+          Swal.fire("Updated!", "User set as admin.", "success");
+          refetch();
+        }
                 } catch (err) {
                     console.error(err);
                     Swal.fire("Error!", "Failed to update status", "error");

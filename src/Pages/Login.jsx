@@ -78,6 +78,29 @@ const handleGoogleLogin = () => {
 
 return (
   <div className="max-w-[500px] mx-auto m-10">
+    {/* Demo Credentials Card */}
+    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-4 mb-6 shadow-sm">
+      <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+        </svg>
+        Demo Credentials
+      </h3>
+      <div className="space-y-3">
+        {/* Admin Credentials */}
+        <div className="bg-white rounded-md p-3 border border-blue-100">
+          <p className="font-semibold text-sm text-[#d34e2d] mb-1">Admin</p>
+          <p className="text-xs text-gray-700"><span className="font-medium">Email:</span> minhaj@gmail.com</p>
+          <p className="text-xs text-gray-700"><span className="font-medium">Pass:</span> 12345aS</p>
+        </div>
+        {/* Librarian Credentials */}
+        <div className="bg-white rounded-md p-3 border border-blue-100">
+          <p className="font-semibold text-sm text-green-600 mb-1">Librarian</p>
+          <p className="text-xs text-gray-700"><span className="font-medium">Email:</span> debobrotokumar15@gmail.com</p>
+          <p className="text-xs text-gray-700"><span className="font-medium">Pass:</span> 12345aS</p>
+        </div>
+      </div>
+    </div>
 
     <form onSubmit={handleLogin}>
 

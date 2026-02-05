@@ -1,4 +1,4 @@
-import { use } from 'react';
+import { use, useState } from 'react';
 import { XCircle, Package } from 'lucide-react';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
 import Swal from 'sweetalert2';
@@ -9,11 +9,13 @@ const Orders = () => {
     const axiosSecure = UseAxiosSecure();
     const { user } = use(AuthContext);
     const email = user?.email;
+   const [loading, setLoading] = useState(true);
 
     const { data: orders = [], refetch } = useQuery({
         queryKey: ['books'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/librarian/${email}`);
+            setLoading(false)
             return res.data;
         }
     });
@@ -66,6 +68,8 @@ const Orders = () => {
             }
         });
     };
+       if (loading) return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-bars loading-lg text-amber-500"></span></div>;
+
 
     return (
         <div className="space-y-6">

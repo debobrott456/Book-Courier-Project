@@ -63,7 +63,7 @@ const BookCard = ({ book }) => {
         </div>
 
         {/* Add to Cart Button */}
-       <Link to={`/bookDetails/${book._id}`}><button className="w-full flex items-center justify-center  bg-[#480f0f] hover:bg-[#62292b] text-white font-bold py-1 rounded-xl transition-colors shadow-lg shadow-blue-100">
+       <Link to={`/bookDetails/${book._id}`}><button className="w-full flex items-center justify-center  bg-[#d34e2d] hover:bg-[#62292b] text-white font-bold py-1 rounded-xl transition-colors shadow-lg shadow-blue-100">
           <ShoppingCart size={18} />
           View Deatils
         </button></Link>
