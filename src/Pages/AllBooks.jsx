@@ -10,8 +10,6 @@ const AllBooks = () => {
     const [sortOrder, setSortOrder] = useState("desc");
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [searchParams] = useSearchParams();
-      const [loading, setLoading] = useState(true);
-
     
     // Filter states
     const [priceRange, setPriceRange] = useState({ min: '', max: '' });
@@ -20,20 +18,35 @@ const AllBooks = () => {
     // Available categories
     const categories = ['Fiction', 'Story', 'Thriller', 'Fantasy', 'Horror'];
 
+    /* eslint-disable react-hooks/set-state-in-effect */
     // Handle URL category parameter
     useEffect(() => {
         const categoryFromUrl = searchParams.get('category');
         if (categoryFromUrl && categories.includes(categoryFromUrl)) {
-            setSelectedCategories([categoryFromUrl]);
+            // Only update if the category is not already selected
+            setSelectedCategories(prev => {
+                if (prev.length === 1 && prev[0] === categoryFromUrl) {
+                    return prev; // No change needed
+                }
+                return [categoryFromUrl];
+            });
+        } else if (!categoryFromUrl) {
+            // Clear categories if no category in URL
+            setSelectedCategories(prev => {
+                if (prev.length === 0) {
+                    return prev; // No change needed
+                }
+                return [];
+            });
         }
-    }, [searchParams]);
+    }, [searchParams, categories]);
+    /* eslint-enable react-hooks/set-state-in-effect */
 
     useEffect(() => {
         fetch(`https://book-server-omega.vercel.app/allBooks?sort=${sortOrder}&status=published`)
             .then(res => res.json())
             .then(data => {
                 setJobs(data);
-                setLoading(false)
             });
     }, [sortOrder]);
 
@@ -67,6 +80,17 @@ const AllBooks = () => {
             );
         }
 
+        // Sorting
+        if (sortOrder === 'name') {
+            filtered.sort((a, b) => a.bookName.localeCompare(b.bookName));
+        } else if (sortOrder === 'rating') {
+            filtered.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        } else if (sortOrder === 'desc') {
+            filtered.sort((a, b) => b.bookPrice - a.bookPrice);
+        } else if (sortOrder === 'asc') {
+            filtered.sort((a, b) => a.bookPrice - b.bookPrice);
+        }
+
         return filtered;
     };
 
@@ -88,15 +112,22 @@ const AllBooks = () => {
     };
 
     const filteredBooks = getFilteredBooks();
-       if (loading) return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-bars loading-lg text-amber-500"></span></div>;
-  if (!jobs) return <p>Job not found</p>;
     return (
-        <div className="m-[50px]">
+        <div className="m-5">
             {/* Page Title - Show category name if filtering */}
-        
+            {selectedCategories.length === 1 && (
+                <div className="mb-6">
+                    <h1 className="text-3xl font-bold text-gray-900 mb-2">
+                        {selectedCategories[0]} Books
+                    </h1>
+                    <p className="text-gray-600">
+                        Explore our collection of {selectedCategories[0].toLowerCase()} books
+                    </p>
+                </div>
+            )}
 
             {/* Header with Search, Filter, and Sort */}
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+            <div className="flex flex-col bg-[#c26666] lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
                 {/* Left side - Search */}
                 <div className="relative flex-1 max-w-md">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -187,7 +218,7 @@ const AllBooks = () => {
             </div>
 
             {/* Books Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-3">
                 {filteredBooks.map((book) => (
                     <BookCard key={book._id} book={book} />
                 ))}

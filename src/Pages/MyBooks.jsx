@@ -32,7 +32,7 @@ const MyBooks = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/allBooks/${id}`)
-                    .then(res => {
+                    .then(() => {
                         refetch();
                         Swal.fire({
                             title: "Deleted!",

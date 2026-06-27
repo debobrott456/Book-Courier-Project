@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import FictionImg from '../assets/Fiction1-8.jpg';
 import FantasyImg from '../assets/fantasy1-9.jpg';
 import StoryImg from '../assets/Story-11.jpg';
-import HorrorImg from '../assets/horror.jpg';
+import HorrorImg from '../assets/horrorphoto.jpeg';
 import ThrillerImg from '../assets/Thriller22-7.jpg';
 
 const Category = () => {

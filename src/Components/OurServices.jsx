@@ -1,5 +1,5 @@
 import { Truck, Package, MapPin, CreditCard, RotateCcw } from 'lucide-react';
-import ServiceImage from '../assets/blog2-1330x620.jpg';
+import ServiceImage from '../assets/book-library2R7G52F.jpg';
 
 const OurServices = () => {
     const services = [

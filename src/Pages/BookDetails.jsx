@@ -1,5 +1,6 @@
 import { use, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../Contexts/Context';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
 import { toast, ToastContainer } from 'react-toastify';
@@ -24,6 +25,22 @@ const [hover, setHover] = useState(0);
  
   const { id } = useParams();
 
+  const { data = [], refetch } = useQuery({
+    queryKey: ['reviews', id],
+    queryFn: async () => {
+      // Fetch reviews and filter locally in case backend doesn't support query params properly
+      const res = await axiosSecure.get(`/reviews`);
+      const allReviews = Array.isArray(res.data) ? res.data : [];
+      return allReviews.filter(r => r.bookId === id);
+    }
+  });
+
+  const reviews = Array.isArray(data) ? data : [];
+
+  const averageRating = reviews.length > 0 
+    ? (reviews.reduce((acc, curr) => acc + curr.rating, 0) / reviews.length).toFixed(1)
+    : book.rating || 0;
+
 const handleReviewSubmit = async (e) => {
   e.preventDefault();
   
@@ -45,7 +62,7 @@ const handleReviewSubmit = async (e) => {
       toast.success("Review posted successfully!");
       setReviewText("");
       setRating(0);
-      // Optional: Refresh book data to show new rating
+      refetch();
     }
   } catch (err) {
     toast.error("Failed to post review");
@@ -157,12 +174,12 @@ const handleReviewSubmit = async (e) => {
                                 <Star 
                                     key={i} 
                                     size={20} 
-                                    className={i < Math.floor(book.rating) ? "text-yellow-400 fill-current" : "text-gray-300"} 
+                                    className={i < Math.floor(Number(averageRating)) ? "text-yellow-400 fill-current" : "text-gray-300"} 
                                 />
                             ))}
                         </div>
-                        <span className="text-lg font-semibold">{book.rating}</span>
-                        <span className="text-gray-500">({Math.floor(Math.random() * 100) + 50} reviews)</span>
+                        <span className="text-lg font-semibold">{averageRating}</span>
+                        <span className="text-gray-500">({reviews.length} reviews)</span>
                     </div>
 
                     {/* Price Section with Title */}
@@ -266,8 +283,13 @@ const handleReviewSubmit = async (e) => {
                     {/* Description */}
                  
                 </div>
-                  <div className="bg-white rounded-xl shadow-sm p-6 border-gray-200 mt-8 w-full lg:w-[400px]">
-  <h3 className="text-xl font-bold text-gray-800 mb-6">Leave a Review</h3>
+            </div>
+
+            {/* Reviews Section: 2 columns */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12 w-full">
+                {/* Left Side: Submit Form */}
+                <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 h-fit">
+                    <h3 className="text-xl font-bold text-gray-800 mb-6">Leave a Review</h3>
   
   <form onSubmit={handleReviewSubmit} className="space-y-4">
     {/* Star Rating Selector */}
@@ -313,74 +335,48 @@ const handleReviewSubmit = async (e) => {
       Submit Review
     </button>
   </form>
+</div>
 
-  {/* Dummy Review Card */}
-  
-
-  {/* Display Visual Statistics (Matching your image_c75fc3.png) */}
-  {/* <div className="mt-10 pt-10 border-t grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-    <div className="text-center md:text-left">
-      <h4 className="text-5xl font-bold text-gray-900">{book.rating || "5.0"}<span className="text-xl text-gray-400">/5</span></h4>
-      <p className="text-gray-500 mt-1">Total Reviews</p>
-      <div className="flex justify-center md:justify-start gap-1 mt-2 text-orange-500">
-     
-        <Rating rating={book.rating}></Rating>
-      </div>
-    </div>
-    
-    <div className="space-y-2">
-      {[5, 4, 3, 2, 1].map((num) => (
-        <div key={num} className="flex items-center gap-4 text-sm">
-          <span className="w-4 font-bold">{num}★</span>
-          <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-gray-800" 
-              style={{ width: num === 5 ? '100%' : '0%' }} 
-            />
-          </div>
-          <span className="text-gray-400">1</span>
-        </div>
-      ))}
-    </div>
-  
-  </div> */}
-
-</div >
+                {/* Right Side: Reviews List */}
+                <div className="w-full space-y-4">
+                    <h3 className="text-xl font-bold text-gray-800 mb-6">User Reviews ({reviews.length})</h3>
+                {reviews.length === 0 ? (
+                    <p className="text-gray-500">No reviews yet. Be the first to review!</p>
+                ) : (
+                    reviews.map((review, idx) => (
+                        <div key={idx} className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                            <div className="flex items-start gap-4">
+                                <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center font-bold text-gray-700 flex-shrink-0 overflow-hidden">
+                                    {review.userPhoto ? (
+                                        <img src={review.userPhoto} alt={review.userName} className="w-full h-full object-cover" />
+                                    ) : (
+                                        <span className="text-lg">{review.userName ? review.userName.charAt(0).toUpperCase() : "U"}</span>
+                                    )}
+                                </div>
+                                <div className="flex-1">
+                                    <div className="flex items-center justify-between mb-2">
+                                        <h4 className="font-semibold text-gray-900">{review.userName || 'Anonymous'}</h4>
+                                        <span className="text-sm text-gray-500">{new Date(review.date).toLocaleDateString()}</span>
+                                    </div>
+                                    <div className="flex items-center gap-1 mb-3">
+                                        {[...Array(5)].map((_, i) => (
+                                            <FaStar
+                                                key={i}
+                                                className={i < review.rating ? "text-yellow-400" : "text-gray-300"}
+                                                size={16}
+                                            />
+                                        ))}
+                                    </div>
+                                    <p className="text-gray-700 leading-relaxed">
+                                        {review.comment}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                )}
             </div>
-            <div className="mt-8 lg:w-[700px] w-full ">
-    <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-      <div className="flex items-start gap-4">
-        {/* User Avatar */}
-        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center font-bold text-green-700 flex-shrink-0">
-          <span className="text-lg">MV</span>
         </div>
-
-        <div className="flex-1">
-          {/* Header with name and date */}
-          <div className="flex items-center justify-between mb-2">
-            <h4 className="font-semibold text-gray-900">Marco Verratti</h4>
-            <span className="text-sm text-gray-500">10/25/2023</span>
-          </div>
-
-          {/* Star Rating */}
-          <div className="flex items-center gap-1 mb-3">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <FaStar
-                key={star}
-                className="text-yellow-400"
-                size={16}
-              />
-            ))}
-          </div>
-
-          {/* Review Comment */}
-          <p className="text-gray-700 leading-relaxed">
-            "Their customer service is second to none." Eleifend quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus. Semper auctor neque vitae tempus quam. Viverra tellus in hac habitasse. Eros donec ac odio tempor orci dapibus ultrices. Nisl porta lorem mollis aliquam ut porttitor leo.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
 
             {/* Order Modal */}
             {isOpen && (

@@ -13,12 +13,7 @@ import '../Styles/Banner.css'
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Coverage from '../Pages/Coverage';
-// import book1 from '../assets/silent.jpg'
-// import book2 from '../assets/Atomic_Habits.jpg'
-// import book3 from '../assets/alchemist.jpg'
-// import book4 from '../assets/rich_dad-1000.jpg'
-// import book5 from '../assets/harry_potter.jpg'
-// import book6 from '../assets/psychology_money_crwg.jpg'
+
 import { Link } from 'react-router';
 import UseAxiosSecure from '../Hooks/UseAxiosSecure';
 import Category from './Category';
@@ -36,9 +31,6 @@ const Home = () => {
 
  const [datas, setDatas] = useState([]);
  const [books, setBooks] = useState([]);
-   const [loading, setLoading] = useState(true);
-
-
 
   useEffect(() => {
     fetch("/service_center.json")
@@ -48,14 +40,8 @@ const Home = () => {
   useEffect(() => {
     fetch(`https://book-server-omega.vercel.app/recentbooks?status=published`)
       .then(res => res.json())
-      .then(data => {setBooks(data)
-        setLoading(false)
-    console.log(data)});
+      .then(data => setBooks(data));
   }, []);
-
-
-   if (loading) return <div className="flex justify-center items-center min-h-screen"><span className="loading loading-bars loading-lg text-amber-500"></span></div>;
-  if (!books) return <p>Job not found</p>;
 
     return (
         <div className='max-w-8xl mx-auto my-10'>
@@ -159,11 +145,11 @@ const Home = () => {
         <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center">
                         Recent <span className="text-[#d34e2d]">Books</span>
                     </h2>
-        <div className='grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 lg:grid-cols-5 gap-3'>
+        <div className='grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
           
             {
                 books.map((book)=>
-                  <BookCard book={book}></BookCard>
+                  <BookCard key={book._id} book={book}></BookCard>
                )
             }
         </div>

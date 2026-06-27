@@ -16,7 +16,7 @@ const BookCard = ({ book }) => {
   } = book;
 
   return (
-    <div className="w-full lg:w-64 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden group">
+    <div className="w-full lg:w-58 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden group">
       
       {/* Top Image Section */}
       <div className="relative h-80 overflow-hidden bg-gray-100">
