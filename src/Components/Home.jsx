@@ -145,7 +145,7 @@ const Home = () => {
         <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center">
                         Recent <span className="text-[#d34e2d]">Books</span>
                     </h2>
-        <div className='grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6'>
           
             {
                 books.map((book)=>

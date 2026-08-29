@@ -4,6 +4,9 @@ import { useSearchParams } from 'react-router';
 import { ChevronDown, Filter, Search, X } from 'lucide-react';
 import BookCard from './BookCard';
 
+// Defined outside component to avoid recreating on every render (prevents useEffect loop)
+const categories = ['Fiction', 'Story', 'Thriller', 'Fantasy', 'Horror'];
+
 const AllBooks = () => {
     const [jobs, setJobs] = useState([]);
     const [search, setSearch] = useState("");
@@ -14,9 +17,6 @@ const AllBooks = () => {
     // Filter states
     const [priceRange, setPriceRange] = useState({ min: '', max: '' });
     const [selectedCategories, setSelectedCategories] = useState([]);
-    
-    // Available categories
-    const categories = ['Fiction', 'Story', 'Thriller', 'Fantasy', 'Horror'];
 
     /* eslint-disable react-hooks/set-state-in-effect */
     // Handle URL category parameter
@@ -39,7 +39,7 @@ const AllBooks = () => {
                 return [];
             });
         }
-    }, [searchParams, categories]);
+    }, [searchParams]);
     /* eslint-enable react-hooks/set-state-in-effect */
 
     useEffect(() => {
